@@ -1,0 +1,88 @@
+
+/* Aumentar significativamente o tamanho das miniaturas nos cards */
+.board-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 12px 6px !important;
+}
+
+.board-card .card-visual-box {
+  flex: 1 !important;
+  width: 100% !important;
+  height: 140px !important;
+  max-height: 150px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.board-card .card-visual-box img,
+img.card-custom-img {
+  width: auto !important;
+  height: 125px !important;
+  max-width: 90% !important;
+  max-height: 90% !important;
+  object-fit: contain !important;
+  transform: scale(1.15) !important;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,0.18)) !important;
+}
+
+.board-card .card-title {
+  font-size: 1.25rem !important;
+  font-weight: 800 !important;
+  margin-top: 4px !important;
+}
+
+/* ===================================================
+   AJUSTE DE ESCALA - IMAGENS GRANDES E VISÍVEIS
+   =================================================== */
+
+/* Caixa do cartão */
+.board-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 10px 6px !important;
+  overflow: hidden !important;
+}
+
+/* Área da imagem (Bolinha / Container Visual) */
+.board-card .card-visual-box {
+  flex: 1 !important;
+  width: 100% !important;
+  height: 155px !important;
+  min-height: 140px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* A imagem em si */
+.board-card .card-visual-box img,
+img.card-custom-img {
+  width: auto !important;
+  height: 130px !important;
+  max-width: 90% !important;
+  max-height: 90% !important;
+  object-fit: contain !important;
+  transform: scale(1.22) !important;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.22)) !important;
+  transition: transform 0.15s ease-in-out !important;
+}
+
+/* Efeito tátil de clique */
+.board-card:active .card-visual-box img {
+  transform: scale(1.1) !important;
+}
+
+/* Texto do card legível e bem posicionado */
+.board-card .card-title {
+  font-size: 1.25rem !important;
+  font-weight: 800 !important;
+  margin-top: 4px !important;
+  margin-bottom: 2px !important;
+  text-transform: uppercase !important;
+}
