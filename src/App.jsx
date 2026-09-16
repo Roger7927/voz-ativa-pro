@@ -20,7 +20,12 @@ const MAPA_IMAGENS = {
   "Cansado": "cansado.png", "Barulho": "barulho.png", "Medo": "medo.png", "Calma": "calma.png",
   "Gostei Muito": "gostei-muito.png", "Professora": "professora.png", "Colega": "colega.png",
   "Mamãe": "mamae.png", "Papai": "papai.png", "Você": "voce.png", "Vovó": "vovo-f.png",
-  "Vovô": "vovo-m.png", "Irmão": "irmao.png", "Irmã": "irma.png"
+  "Vovô": "vovo-m.png", "Irmão": "irmao.png", "Irmã": "irma.png",
+  "Terapeuta": "terapeuta.png", "Cuidador": "cuidador.png", "Médico": "medico.png",
+  "Leite": "leite.png", "Maçã": "maca.png", "Banana": "banana.png", "Bolacha": "bolacha.png",
+  "Pão": "pao.png", "Arroz e Feijão": "arroz-feijao.png", "Carne": "carne.png", "Bolo": "bolo.png",
+  "Suco": "suco.png", "Iogurte": "iogurte.png", "Chocolate": "chocolate.png", "Pizza": "pizza.png",
+  "Desenhar": "desenhar.png", "Ver Livro": "livro.png"
 };
 
 const VARIACOES_DISPONIVEIS = {
@@ -188,7 +193,7 @@ const VARIACOES_DISPONIVEIS = {
 
 localforage.config({
   name: 'VozAtivaPro',
-  storeName: 'aac_dados_v11'
+  storeName: 'aac_dados_v15'
 });
 
 const ICONES_BASE = {
@@ -346,6 +351,7 @@ const ICONES_BASE = {
 };
 
 const DADOS_COMPLETOS = [
+  // 1. Necessidades Fisiológicas (Matriz 4x4 Completa)
   { id: 'b1', texto: 'Água', chaveSvg: 'agua', cat: 'necessidades', cor: 'c-object', audio: 'agua.m4a' },
   { id: 'b2', texto: 'Comer', chaveSvg: 'comer', cat: 'necessidades', cor: 'c-action', audio: 'comer.m4a' },
   { id: 'b3', texto: 'Banheiro', chaveSvg: 'banheiro', cat: 'necessidades', cor: 'c-object', audio: 'banheiro.m4a' },
@@ -360,7 +366,24 @@ const DADOS_COMPLETOS = [
   { id: 'b6', texto: 'Ajuda', chaveSvg: 'ajuda', cat: 'necessidades', cor: 'c-social', audio: 'ajuda.m4a' },
   { id: 'b7', texto: 'Frio', chaveSvg: 'frio', cat: 'necessidades', cor: 'c-feeling', audio: 'estou_com_frio.m4a' },
   { id: 'b8', texto: 'Calor', chaveSvg: 'calor', cat: 'necessidades', cor: 'c-feeling', audio: 'estou_com_calor.m4a' },
+  { id: 'b15', texto: 'Desenhar', chaveSvg: 'play', cat: 'necessidades', cor: 'c-action', audio: 'desenhar.m4a' },
+  { id: 'b16', texto: 'Ver Livro', chaveSvg: 'play', cat: 'necessidades', cor: 'c-action', audio: 'ver_livro.m4a' },
 
+  // 2. Categoria: Alimentação (12 Itens Sintonizados)
+  { id: 'al_leite', texto: 'Leite', chaveSvg: 'agua', cat: 'alimentacao', cor: 'c-object', audio: 'leite.m4a' },
+  { id: 'al_maca', texto: 'Maçã', chaveSvg: 'comer', cat: 'alimentacao', cor: 'c-object', audio: 'maca.m4a' },
+  { id: 'al_banana', texto: 'Banana', chaveSvg: 'comer', cat: 'alimentacao', cor: 'c-object', audio: 'banana.m4a' },
+  { id: 'al_bolacha', texto: 'Bolacha', chaveSvg: 'comer', cat: 'alimentacao', cor: 'c-object', audio: 'bolacha.m4a' },
+  { id: 'al_pao', texto: 'Pão', chaveSvg: 'comer', cat: 'alimentacao', cor: 'c-object', audio: 'pao.m4a' },
+  { id: 'al_arroz_feijao', texto: 'Arroz e Feijão', chaveSvg: 'comer', cat: 'alimentacao', cor: 'c-object', audio: 'arroz-feijao.m4a' },
+  { id: 'al_carne', texto: 'Carne', chaveSvg: 'comer', cat: 'alimentacao', cor: 'c-object', audio: 'carne.m4a' },
+  { id: 'al_bolo', texto: 'Bolo', chaveSvg: 'comer', cat: 'alimentacao', cor: 'c-object', audio: 'bolo.m4a' },
+  { id: 'al_suco', texto: 'Suco', chaveSvg: 'agua', cat: 'alimentacao', cor: 'c-object', audio: 'suco.m4a' },
+  { id: 'al_iogurte', texto: 'Iogurte', chaveSvg: 'comer', cat: 'alimentacao', cor: 'c-object', audio: 'iogurte.m4a' },
+  { id: 'al_chocolate', texto: 'Chocolate', chaveSvg: 'comer', cat: 'alimentacao', cor: 'c-object', audio: 'chocolate.m4a' },
+  { id: 'al_pizza', texto: 'Pizza', chaveSvg: 'comer', cat: 'alimentacao', cor: 'c-object', audio: 'pizza.m4a' },
+
+  // 3. Ações
   { id: 'a1', texto: 'Eu', chaveSvg: 'user', cat: 'acoes', cor: 'c-people', audio: 'Eu.m4a' },
   { id: 'a2', texto: 'Sim', chaveSvg: 'check', cat: 'acoes', cor: 'c-social', audio: 'sim.m4a' },
   { id: 'a3', texto: 'Não', chaveSvg: 'cross', cat: 'acoes', cor: 'c-social', audio: 'nao.m4a' },
@@ -370,6 +393,7 @@ const DADOS_COMPLETOS = [
   { id: 'a7', texto: 'Passear', chaveSvg: 'walk', cat: 'acoes', cor: 'c-action', audio: 'quero_passear.m4a' },
   { id: 'a8', texto: 'Esperar', chaveSvg: 'wait', cat: 'acoes', cor: 'c-action', audio: 'esperar_um_pouco.m4a' },
 
+  // 4. Sentimentos
   { id: 's1', texto: 'Feliz', chaveSvg: 'happy', cat: 'sentimentos', cor: 'c-feeling', audio: 'feliz.m4a' },
   { id: 's2', texto: 'Triste', chaveSvg: 'sad', cat: 'sentimentos', cor: 'c-feeling', audio: 'triste.m4a' },
   { id: 's3', texto: 'Bravo', chaveSvg: 'bravo', cat: 'sentimentos', cor: 'c-feeling', audio: 'bravo.m4a' },
@@ -379,6 +403,7 @@ const DADOS_COMPLETOS = [
   { id: 's7', texto: 'Calma', chaveSvg: 'happy', cat: 'sentimentos', cor: 'c-feeling', audio: 'calma.m4a' },
   { id: 's8', texto: 'Gostei Muito', chaveSvg: 'heart', cat: 'sentimentos', cor: 'c-social', audio: 'gostei_muito.m4a' },
 
+  // 5. Pessoas (Matriz 3x4 Completa)
   { id: 'p1', texto: 'Professora', chaveSvg: 'teacher', cat: 'pessoas', cor: 'c-people', audio: 'Professora.m4a' },
   { id: 'p2', texto: 'Colega', chaveSvg: 'friend', cat: 'pessoas', cor: 'c-people', audio: 'Colega.m4a' },
   { id: 'p3', texto: 'Mamãe', chaveSvg: 'mother', cat: 'pessoas', cor: 'c-people', audio: 'Mamãe.m4a' },
@@ -387,11 +412,15 @@ const DADOS_COMPLETOS = [
   { id: 'p6', texto: 'Vovó', chaveSvg: 'mother', cat: 'pessoas', cor: 'c-people', audio: 'vovo.m4a' },
   { id: 'p7', texto: 'Vovô', chaveSvg: 'father', cat: 'pessoas', cor: 'c-people', audio: 'vovo_m.m4a' },
   { id: 'p8', texto: 'Irmão', chaveSvg: 'user', cat: 'pessoas', cor: 'c-people', audio: 'irmao.m4a' },
-  { id: 'p9', texto: 'Irmã', chaveSvg: 'user', cat: 'pessoas', cor: 'c-people', audio: 'irma.m4a' }
+  { id: 'p9', texto: 'Irmã', chaveSvg: 'user', cat: 'pessoas', cor: 'c-people', audio: 'irma.m4a' },
+  { id: 'p10', texto: 'Terapeuta', chaveSvg: 'teacher', cat: 'pessoas', cor: 'c-people', audio: 'terapeuta.m4a' },
+  { id: 'p11', texto: 'Cuidador', chaveSvg: 'user', cat: 'pessoas', cor: 'c-people', audio: 'cuidador.m4a' },
+  { id: 'p12', texto: 'Médico', chaveSvg: 'user', cat: 'pessoas', cor: 'c-people', audio: 'medico.m4a' }
 ];
 
 export default function App() {
   const [frase, setFrase] = useState([]);
+  const [indiceFalando, setIndiceFalando] = useState(null);
   const [catAtiva, setCatAtiva] = useState('necessidades');
   const [cards, setCards] = useState(DADOS_COMPLETOS);
   const [fotoPerfil, setFotoPerfil] = useState(null);
@@ -421,12 +450,12 @@ export default function App() {
         const prefsSalvas = await localforage.getItem('custom_visual_skins');
         if (prefsSalvas) setPreferenciasVisuais(prefsSalvas);
 
-        const cardsSalvos = await localforage.getItem('custom_cards_v11');
+        const cardsSalvos = await localforage.getItem('custom_cards_v15');
         if (cardsSalvos && cardsSalvos.length > 0) {
           setCards(cardsSalvos);
         } else {
           setCards(DADOS_COMPLETOS);
-          await localforage.setItem('custom_cards_v11', DADOS_COMPLETOS);
+          await localforage.setItem('custom_cards_v15', DADOS_COMPLETOS);
         }
 
         const fotoSalva = await localforage.getItem('child_photo');
@@ -515,17 +544,33 @@ export default function App() {
   };
 
   const falarFrase = () => {
-    if (frase.length === 0) return;
+    if (frase.length === 0 || indiceFalando !== null) return;
+
     let i = 0;
     const playNext = () => {
-      if (i >= frase.length) return;
+      if (i >= frase.length) {
+        setIndiceFalando(null);
+        return;
+      }
+
+      setIndiceFalando(i);
       const item = frase[i];
+
       reproduzirItemVoz(item, () => {
         i++;
         playNext();
       });
     };
+
     playNext();
+  };
+
+  const limparFrase = () => {
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    setIndiceFalando(null);
+    setFrase([]);
   };
 
   const dispararEmergencia = (texto, audio) => {
@@ -623,7 +668,7 @@ export default function App() {
 
     const listaAtualizada = [...cards, novoCard];
     setCards(listaAtualizada);
-    await localforage.setItem('custom_cards_v11', listaAtualizada);
+    await localforage.setItem('custom_cards_v15', listaAtualizada);
 
     setNovoTexto('');
     setFotoCartaoCustom(null);
@@ -654,7 +699,7 @@ export default function App() {
             frase.map((tok, idx) => (
               <div
                 key={`${tok.id}-${idx}`}
-                className={`token ${tok.cor}`}
+                className={`token ${tok.cor} ${indiceFalando === idx ? 'token-ativo-fala' : ''}`}
                 onClick={() => setFrase(frase.filter((_, i) => i !== idx))}
               >
                 {tok.imagemCustom ? (
@@ -681,12 +726,12 @@ export default function App() {
         <button type="button" className="sentence-btn btn-speak" onClick={falarFrase}>
           FALAR
         </button>
-        <button type="button" className="sentence-btn btn-clear" onClick={() => setFrase([])}>
+        <button type="button" className="sentence-btn btn-clear" onClick={limparFrase}>
           LIMPAR
         </button>
       </header>
 
-      {/* 2. Categorias com Botão de Jogos Integrado e Rolagem Touch */}
+      {/* 2. Categorias com Navegação e Botões de Controle */}
       <nav className="categories-tabs" style={{ display: 'flex', overflowX: 'auto', gap: '8px', padding: '8px 12px' }}>
         <button
           type="button"
@@ -694,6 +739,13 @@ export default function App() {
           onClick={() => setCatAtiva('necessidades')}
         >
           Necessidades
+        </button>
+        <button
+          type="button"
+          className={`tab-item ${catAtiva === 'alimentacao' ? 'active' : ''}`}
+          onClick={() => setCatAtiva('alimentacao')}
+        >
+          Alimentação
         </button>
         <button
           type="button"
@@ -750,9 +802,27 @@ export default function App() {
         >
           {modoCalmo ? '🌙 Modo Calmo: ATIVO' : '☀️ Modo Padrão'}
         </button>
+        <button
+          type="button"
+          onClick={() => setMenuEmergenciaAberto(true)}
+          style={{
+            background: 'linear-gradient(135deg, #dc2626, #b91c1c)',
+            color: '#ffffff',
+            fontWeight: 'bold',
+            border: '2px solid #f87171',
+            borderRadius: '14px',
+            padding: '8px 16px',
+            cursor: 'pointer',
+            flexShrink: 0,
+            boxShadow: '0 2px 8px rgba(220, 38, 38, 0.4)'
+          }}
+          title="Ajuda Rápida e Emergência Imediata"
+        >
+          🆘 AJUDA RÁPIDA
+        </button>
       </nav>
 
-      {/* 3. Grade Principal de Comunicação */}
+      {/* 3. Grade Principal de Comunicação (100% Desobstruída) */}
       <main className="board-container">
         <div className="board-grid">
           {cartoesVisiveis.map((c) => (
@@ -786,73 +856,137 @@ export default function App() {
         </div>
       </main>
 
-      {/* 4. Barra de Socorro Sensorial e Imediato (Panic Bar / Quick Needs) */}
-      <div style={{ position: 'fixed', bottom: '24px', left: '20px', zIndex: 9990 }}>
-        {menuEmergenciaAberto && (
-          <div style={{
+      {/* 4. Modal Central de Ajuda Imediata */}
+      {menuEmergenciaAberto && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'rgba(15, 23, 42, 0.88)',
+            backdropFilter: 'blur(6px)',
             display: 'flex',
-            flexDirection: 'column',
-            gap: '12px',
-            marginBottom: '14px',
-            background: '#0f172a',
-            padding: '14px',
-            borderRadius: '20px',
-            border: '2px solid #38bdf8',
-            boxShadow: '0 8px 30px rgba(0, 0, 0, 0.7)'
-          }}>
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 9995
+          }}
+          onClick={() => setMenuEmergenciaAberto(false)}
+        >
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, 1fr)',
+              gap: '16px',
+              background: '#0f172a',
+              padding: '24px',
+              borderRadius: '24px',
+              border: '3px solid #ef4444',
+              boxShadow: '0 12px 40px rgba(0, 0, 0, 0.8)',
+              maxWidth: '440px',
+              width: '90%'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{ gridColumn: 'span 2', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+              <h3 style={{ color: '#f87171', fontSize: '1.35rem', margin: 0, fontWeight: 'bold' }}>
+                🆘 Ajuda Imediata
+              </h3>
+              <button
+                type="button"
+                onClick={() => setMenuEmergenciaAberto(false)}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: '#94a3b8',
+                  fontSize: '1.4rem',
+                  cursor: 'pointer'
+                }}
+              >
+                ✖
+              </button>
+            </div>
             <button
               type="button"
               onClick={() => dispararEmergencia('Banheiro', 'banheiro.m4a')}
-              style={{ background: '#0284c7', color: '#fff', border: 'none', borderRadius: '12px', padding: '12px 18px', fontSize: '1.05rem', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}
+              style={{
+                background: '#0284c7',
+                color: '#ffffff',
+                border: '2px solid #38bdf8',
+                borderRadius: '16px',
+                padding: '18px 12px',
+                fontSize: '1.2rem',
+                fontWeight: 'bold',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '8px',
+                cursor: 'pointer'
+              }}
             >
-              <span style={{ fontSize: '1.3rem' }}>🚽</span> Banheiro
+              <span style={{ fontSize: '2.4rem' }}>🚽</span> Banheiro
             </button>
             <button
               type="button"
               onClick={() => dispararEmergencia('Água', 'agua.m4a')}
-              style={{ background: '#0ea5e9', color: '#fff', border: 'none', borderRadius: '12px', padding: '12px 18px', fontSize: '1.05rem', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}
+              style={{
+                background: '#0ea5e9',
+                color: '#ffffff',
+                border: '2px solid #7dd3fc',
+                borderRadius: '16px',
+                padding: '18px 12px',
+                fontSize: '1.2rem',
+                fontWeight: 'bold',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '8px',
+                cursor: 'pointer'
+              }}
             >
-              <span style={{ fontSize: '1.3rem' }}>💧</span> Água
+              <span style={{ fontSize: '2.4rem' }}>💧</span> Água
             </button>
             <button
               type="button"
               onClick={() => dispararEmergencia('Dor', 'dor.m4a')}
-              style={{ background: '#ef4444', color: '#fff', border: 'none', borderRadius: '12px', padding: '12px 18px', fontSize: '1.05rem', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}
+              style={{
+                background: '#ef4444',
+                color: '#ffffff',
+                border: '2px solid #fca5a5',
+                borderRadius: '16px',
+                padding: '18px 12px',
+                fontSize: '1.2rem',
+                fontWeight: 'bold',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '8px',
+                cursor: 'pointer'
+              }}
             >
-              <span style={{ fontSize: '1.3rem' }}>🩹</span> Dor
+              <span style={{ fontSize: '2.4rem' }}>🩹</span> Dor
             </button>
             <button
               type="button"
               onClick={() => dispararEmergencia('Parar', 'parar.m4a')}
-              style={{ background: '#f59e0b', color: '#fff', border: 'none', borderRadius: '12px', padding: '12px 18px', fontSize: '1.05rem', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}
+              style={{
+                background: '#f59e0b',
+                color: '#ffffff',
+                border: '2px solid #fcd34d',
+                borderRadius: '16px',
+                padding: '18px 12px',
+                fontSize: '1.2rem',
+                fontWeight: 'bold',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '8px',
+                cursor: 'pointer'
+              }}
             >
-              <span style={{ fontSize: '1.3rem' }}>🛑</span> Parar
+              <span style={{ fontSize: '2.4rem' }}>🛑</span> Parar
             </button>
           </div>
-        )}
-
-        <button
-          type="button"
-          onClick={() => setMenuEmergenciaAberto(!menuEmergenciaAberto)}
-          style={{
-            width: '60px',
-            height: '60px',
-            borderRadius: '50%',
-            background: menuEmergenciaAberto ? '#ef4444' : 'linear-gradient(135deg, #0284c7, #0369a1)',
-            color: '#ffffff',
-            border: '3px solid #ffffff',
-            fontSize: '1.6rem',
-            cursor: 'pointer',
-            boxShadow: '0 4px 16px rgba(0, 0, 0, 0.5)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-          title="Ajuda Rápida e Necessidades Urgentes"
-        >
-          {menuEmergenciaAberto ? '✖' : '🆘'}
-        </button>
-      </div>
+        </div>
+      )}
 
       {/* 5. Modal de Configurações e Inclusão */}
       {modalAberto && (
@@ -937,10 +1071,10 @@ export default function App() {
                         <div style={{ 
                           display: 'flex', 
                           justifyContent: 'flex-start', 
-                          alignItems: 'center',
-                          gap: '16px',
-                          overflowX: 'auto',
-                          padding: '4px 2px'
+                          alignItems: 'center', 
+                          gap: '16px', 
+                          overflowX: 'auto', 
+                          padding: '4px 2px' 
                         }}>
                           {opcoes.map((op) => {
                             const estaAtivo = ativa === op.img;
@@ -991,7 +1125,7 @@ export default function App() {
                 </div>
               </section>
 
-              {/* Seção Novo Cartão com Foto e Voz */}
+              {/* Seção Novo Cartão */}
               <section className="form-group">
                 <h3>Adicionar Novo Cartão com Foto e Voz</h3>
                 <input
@@ -1021,6 +1155,7 @@ export default function App() {
                     onChange={(e) => setNovaCategoria(e.target.value)}
                   >
                     <option value="necessidades">Necessidades</option>
+                    <option value="alimentacao">Alimentação</option>
                     <option value="acoes">Ações</option>
                     <option value="sentimentos">Sentimentos</option>
                     <option value="pessoas">Pessoas</option>
@@ -1061,7 +1196,7 @@ export default function App() {
         </div>
       )}
 
-      {/* 6. Menu Seletor Central (Activity Hub) com os Jogos Clínicos e Engine Cognitiva */}
+      {/* 6. Menu Seletor Central (Activity Hub) */}
       {hubJogosAberto && (
         <div style={{
           position: 'fixed',
@@ -1112,7 +1247,6 @@ export default function App() {
             justifyContent: 'center',
             maxWidth: '1200px'
           }}>
-            {/* Jogo 1: Detetive das Emoções */}
             <div
               onClick={() => {
                 setHubJogosAberto(false);
@@ -1141,7 +1275,6 @@ export default function App() {
               </p>
             </div>
 
-            {/* Jogo 2: Cadê o Par? */}
             <div
               onClick={() => {
                 setHubJogosAberto(false);
@@ -1170,7 +1303,6 @@ export default function App() {
               </p>
             </div>
 
-            {/* Jogo 3: Minha Rotina */}
             <div
               onClick={() => {
                 setHubJogosAberto(false);
@@ -1199,7 +1331,6 @@ export default function App() {
               </p>
             </div>
 
-            {/* Jogo 4: Fábrica de Frases */}
             <div
               onClick={() => {
                 setHubJogosAberto(false);
@@ -1228,7 +1359,6 @@ export default function App() {
               </p>
             </div>
 
-            {/* Jogo 5: Para Que Serve? */}
             <div
               onClick={() => {
                 setHubJogosAberto(false);
@@ -1257,7 +1387,6 @@ export default function App() {
               </p>
             </div>
 
-            {/* Módulo Novo: Motor Cognitivo & Lógica */}
             <div
               onClick={() => {
                 setHubJogosAberto(false);

@@ -169,6 +169,7 @@ html, body, #root {
   cursor: pointer;
   border: 2px solid transparent;
   padding: 4px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .token svg {
@@ -281,7 +282,7 @@ html, body, #root {
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   transition: transform 0.08s ease;
-  overflow: hidden; /* Impede qualquer vazamento da imagem */
+  overflow: hidden;
 }
 
 .board-card:active {
@@ -632,4 +633,20 @@ html, body, #root {
     font-size: 0.98rem;
     margin-top: 4px;
   }
+}
+
+/* ==========================================================
+   6. FEEDBACK VISUAL DE FALA (ACTIVE TOKEN HIGHLIGHTER)
+   ========================================================== */
+.token-ativo-fala {
+  transform: scale(1.15) !important;
+  border: 3px solid #38bdf8 !important;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.9) !important;
+  z-index: 10;
+  filter: brightness(1.1);
+}
+
+/* Suporte ao Modo Calmo Sensorial */
+.sensory-calm-mode {
+  filter: saturate(0.8) contrast(0.92);
 }
