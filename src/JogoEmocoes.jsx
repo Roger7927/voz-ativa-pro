@@ -1,6 +1,8 @@
-// (c) 2026 Guillermo Roger Hernandez Chandia - ADS
-import { useState, useEffect } from 'react';
-import { emitirVoz } from './audioEngine';
+/* Copyright: (c) 2026 - Guillermo Roger Hernandez Chandia. 
+   Status: All Rights Reserved (Todos os Direitos Reservados). 
+   Contexto: Projeto acadêmico de Análise e Desenvolvimento de Sistemas (ADS). */
+
+import { useState, useEffect, useRef } from 'react';
 
 const BANCO_COMPLETO_EMOCOES = [
   {
@@ -13,8 +15,8 @@ const BANCO_COMPLETO_EMOCOES = [
       { texto: 'Triste', padrao: 'triste.png', audio: 'triste.m4a' },
       { texto: 'Remédio', padrao: 'remedio.png', audio: 'remedio.m4a' },
       { texto: 'Dor de Barriga', padrao: 'dor-barriga.png', audio: 'dor_de_barriga.m4a' },
-      { texto: 'Água', padrao: 'agua.png', audio: 'agua.m4a' },
-      { texto: 'Comer', padrao: 'comer.png', audio: 'comer.m4a' }
+      { texto: 'Água', padrao: 'agua.png', audio: 'water.m4a' },
+      { texto: 'Comer', padrao: 'comer.png', audio: 'eat.m4a' }
     ]
   },
   {
@@ -25,10 +27,10 @@ const BANCO_COMPLETO_EMOCOES = [
     alvo: { texto: 'Triste', padrao: 'triste.png', audio: 'triste.m4a' },
     distratores: [
       { texto: 'Feliz', padrao: 'feliz.png', audio: 'feliz.m4a' },
-      { texto: 'Comer', padrao: 'comer.png', audio: 'comer.m4a' },
+      { texto: 'Comer', padrao: 'comer.png', audio: 'eat.m4a' },
       { texto: 'Banheiro', padrao: 'banheiro.png', audio: 'banheiro.m4a' },
-      { texto: 'Brincar', padrao: 'brincar.png', audio: 'brincar.m4a' },
-      { texto: 'Dormir', padrao: 'dormir.png', audio: 'quero_dormir.m4a' }
+      { texto: 'Brincar', padrao: 'brincar.png', audio: 'brincar_novo.m4a' },
+      { texto: 'Dormir', padrao: 'dormir.png', audio: 'dormir_novo.m4a' }
     ]
   },
   {
@@ -38,9 +40,9 @@ const BANCO_COMPLETO_EMOCOES = [
     dica: 'A carinha fica fechada e dá vontade de reclamar.',
     alvo: { texto: 'Bravo', padrao: 'bravo.png', audio: 'bravo.m4a' },
     distratores: [
-      { texto: 'Calma', padrao: 'calma.png', audio: 'calma.m4a' },
-      { texto: 'Água', padrao: 'agua.png', audio: 'agua.m4a' },
-      { texto: 'Dormir', padrao: 'dormir.png', audio: 'quero_dormir.m4a' },
+      { texto: 'Calma', padrao: 'calma.png', audio: 'calma_novo.m4a' },
+      { texto: 'Água', padrao: 'agua.png', audio: 'water.m4a' },
+      { texto: 'Dormir', padrao: 'dormir.png', audio: 'dormir_novo.m4a' },
       { texto: 'Feliz', padrao: 'feliz.png', audio: 'feliz.m4a' },
       { texto: 'Triste', padrao: 'triste.png', audio: 'triste.m4a' }
     ]
@@ -54,9 +56,9 @@ const BANCO_COMPLETO_EMOCOES = [
     distratores: [
       { texto: 'Gostei Muito', padrao: 'gostei-muito.png', audio: 'gostei_muito.m4a' },
       { texto: 'Frio', padrao: 'frio.png', audio: 'estou_com_frio.m4a' },
-      { texto: 'Brincar', padrao: 'brincar.png', audio: 'brincar.m4a' },
-      { texto: 'Calma', padrao: 'calma.png', audio: 'calma.m4a' },
-      { texto: 'Ajuda', padrao: 'ajuda.png', audio: 'ajuda.m4a' }
+      { texto: 'Brincar', padrao: 'brincar.png', audio: 'brincar_novo.m4a' },
+      { texto: 'Calma', padrao: 'calma.png', audio: 'calma_novo.m4a' },
+      { texto: 'Ajuda', padrao: 'ajuda.png', audio: 'help.m4a' }
     ]
   },
   {
@@ -64,7 +66,7 @@ const BANCO_COMPLETO_EMOCOES = [
     enunciado: 'Respirei bem fundo, bebi uma água e relaxei...',
     audioEnunciado: 'emocoes_pergunta_calma.m4a',
     dica: 'O corpinho fica leve e a mente descansa em paz.',
-    alvo: { texto: 'Calma', padrao: 'calma.png', audio: 'calma.m4a' },
+    alvo: { texto: 'Calma', padrao: 'calma.png', audio: 'calma_novo.m4a' },
     distratores: [
       { texto: 'Barulho', padrao: 'barulho.png', audio: 'barulho.m4a' },
       { texto: 'Dor', padrao: 'dor.png', audio: 'dor.m4a' },
@@ -75,29 +77,29 @@ const BANCO_COMPLETO_EMOCOES = [
   },
   {
     id: 'fase_6',
-    enunciado: 'Muitas buzinas, gritaria e som alto demais na rua...',
+    enunciado: 'Ouvi um barulho muito forte na rua...',
     audioEnunciado: 'pergunta_barulho.m4a',
     dica: 'Dá vontade de tampar os ouvidos com as mãos.',
     alvo: { texto: 'Barulho', padrao: 'barulho.png', audio: 'barulho.m4a' },
     distratores: [
       { texto: 'Feliz', padrao: 'feliz.png', audio: 'feliz.m4a' },
       { texto: 'Calor', padrao: 'calor.png', audio: 'estou_com_calor.m4a' },
-      { texto: 'Água', padrao: 'agua.png', audio: 'agua.m4a' },
+      { texto: 'Água', padrao: 'agua.png', audio: 'water.m4a' },
       { texto: 'Triste', padrao: 'triste.png', audio: 'triste.m4a' },
       { texto: 'Cansado', padrao: 'cansado.png', audio: 'cansado.m4a' }
     ]
   },
   {
     id: 'fase_7',
-    enunciado: 'Brinquei a tarde inteira e meus olhinhos estão fechando...',
+    enunciado: 'Brinquei e corri bastante o dia inteiro...',
     audioEnunciado: 'pergunta_cansado.m4a',
     dica: 'O corpo quer deitar na cama e repousar.',
     alvo: { texto: 'Cansado', padrao: 'cansado.png', audio: 'cansado.m4a' },
     distratores: [
       { texto: 'Bravo', padrao: 'bravo.png', audio: 'bravo.m4a' },
-      { texto: 'Comer', padrao: 'comer.png', audio: 'comer.m4a' },
-      { texto: 'Brincar', padrao: 'brincar.png', audio: 'brincar.m4a' },
-      { texto: 'Calma', padrao: 'calma.png', audio: 'calma.m4a' },
+      { texto: 'Comer', padrao: 'comer.png', audio: 'eat.m4a' },
+      { texto: 'Brincar', padrao: 'brincar.png', audio: 'brincar_novo.m4a' },
+      { texto: 'Calma', padrao: 'calma.png', audio: 'calma_novo.m4a' },
       { texto: 'Feliz', padrao: 'feliz.png', audio: 'feliz.m4a' }
     ]
   },
@@ -123,7 +125,7 @@ const BANCO_COMPLETO_EMOCOES = [
     alvo: { texto: 'Dor', padrao: 'dor.png', audio: 'dor.m4a' },
     distratores: [
       { texto: 'Feliz', padrao: 'feliz.png', audio: 'feliz.m4a' },
-      { texto: 'Calma', padrao: 'calma.png', audio: 'calma.m4a' },
+      { texto: 'Calma', padrao: 'calma.png', audio: 'calma_novo.m4a' },
       { texto: 'Passear', padrao: 'passear.png', audio: 'quero_passear.m4a' },
       { texto: 'Triste', padrao: 'triste.png', audio: 'triste.m4a' },
       { texto: 'Bravo', padrao: 'bravo.png', audio: 'bravo.m4a' }
@@ -134,24 +136,24 @@ const BANCO_COMPLETO_EMOCOES = [
     enunciado: 'A lição está muito difícil e não estou conseguindo sozinho...',
     audioEnunciado: 'pergunta_ajuda.m4a',
     dica: 'Chamar um adulto para ajudar com carinho.',
-    alvo: { texto: 'Ajuda', padrao: 'ajuda.png', audio: 'ajuda.m4a' },
+    alvo: { texto: 'Ajuda', padrao: 'ajuda.png', audio: 'help.m4a' },
     distratores: [
-      { texto: 'Dormir', padrao: 'dormir.png', audio: 'quero_dormir.m4a' },
+      { texto: 'Dormir', padrao: 'dormir.png', audio: 'dormir_novo.m4a' },
       { texto: 'Remédio', padrao: 'remedio.png', audio: 'remedio.m4a' },
-      { texto: 'Comer', padrao: 'comer.png', audio: 'comer.m4a' },
+      { texto: 'Comer', padrao: 'comer.png', audio: 'eat.m4a' },
       { texto: 'Bravo', padrao: 'bravo.png', audio: 'bravo.m4a' },
       { texto: 'Triste', padrao: 'triste.png', audio: 'triste.m4a' }
     ]
   },
   {
     id: 'fase_11',
-    enunciado: 'Abriram a porta com tudo, levei um baita susto e meu coração disparou...',
+    enunciado: 'Abriram a porta de repente e eu levei um susto...',
     audioEnunciado: 'pergunta_susto_medo.m4a',
     dica: 'O coração bate ligeiro e a gente quer colo.',
     alvo: { texto: 'Medo', padrao: 'medo.png', audio: 'estou_com_medo.m4a' },
     distratores: [
       { texto: 'Feliz', padrao: 'feliz.png', audio: 'feliz.m4a' },
-      { texto: 'Calma', padrao: 'calma.png', audio: 'calma.m4a' },
+      { texto: 'Calma', padrao: 'calma.png', audio: 'calma_novo.m4a' },
       { texto: 'Barulho', padrao: 'barulho.png', audio: 'barulho.m4a' },
       { texto: 'Triste', padrao: 'triste.png', audio: 'triste.m4a' },
       { texto: 'Bravo', padrao: 'bravo.png', audio: 'bravo.m4a' }
@@ -172,12 +174,108 @@ export default function JogoEmocoes({ preferenciasVisuais = {}, onClose }) {
   const [concluido, setConcluido] = useState(false);
   const [mensagemIncentivo, setMensagemIncentivo] = useState(null);
 
+  const audioAtualRef = useRef(null);
+
+  const falarTextoNativo = (texto, aoTerminar = null) => {
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const fala = new SpeechSynthesisUtterance(texto);
+      fala.lang = 'pt-BR';
+      fala.rate = 0.95;
+      fala.onend = () => { if (aoTerminar) aoTerminar(); };
+      fala.onerror = () => { if (aoTerminar) aoTerminar(); };
+      window.speechSynthesis.speak(fala);
+    } else if (aoTerminar) {
+      aoTerminar();
+    }
+  };
+
+  const tocarAudio = (caminho, textoFallback = '', aoTerminar = null) => {
+    if (audioAtualRef.current) {
+      audioAtualRef.current.pause();
+      audioAtualRef.current.currentTime = 0;
+    }
+
+    let executado = false;
+    const finalizar = () => {
+      if (!executado) {
+        executado = true;
+        if (aoTerminar) aoTerminar();
+      }
+    };
+
+    if (caminho) {
+      const audio = new Audio(`/audios/${caminho}`);
+      audioAtualRef.current = audio;
+
+      audio.onended = () => {
+        finalizar();
+      };
+
+      audio.onerror = () => {
+        if (textoFallback) {
+          falarTextoNativo(textoFallback, finalizar);
+        } else {
+          finalizar();
+        }
+      };
+
+      const promessa = audio.play();
+      if (promessa !== undefined) {
+        promessa.catch(() => {
+          if (textoFallback) {
+            falarTextoNativo(textoFallback, finalizar);
+          } else {
+            finalizar();
+          }
+        });
+      }
+    } else if (textoFallback) {
+      falarTextoNativo(textoFallback, finalizar);
+    } else {
+      finalizar();
+    }
+  };
+
+  const faseAtual = fasesPartida[indiceFase];
+
+  const tocarPergunta = () => {
+    if (!faseAtual) return;
+    tocarAudio(faseAtual.audioEnunciado, faseAtual.enunciado);
+  };
+
+  useEffect(() => {
+    if (!etapaMenu && fasesPartida.length > 0 && faseAtual) {
+      const timer = setTimeout(() => {
+        tocarPergunta();
+      }, 350);
+
+      return () => clearTimeout(timer);
+    }
+  }, [indiceFase, etapaMenu]);
+
+  useEffect(() => {
+    return () => {
+      if (audioAtualRef.current) {
+        audioAtualRef.current.pause();
+        audioAtualRef.current.currentTime = 0;
+      }
+      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, []);
+
   const iniciarNovaPartida = (nivelEscolhido) => {
     setDificuldade(nivelEscolhido);
 
+    let totalFases = 8;
+    if (nivelEscolhido === 'facil') totalFases = 5;
+    if (nivelEscolhido === 'dificil') totalFases = 10;
+
     const sorteadas = [...BANCO_COMPLETO_EMOCOES]
       .sort(() => 0.5 - Math.random())
-      .slice(0, 5);
+      .slice(0, totalFases);
 
     setFasesPartida(sorteadas);
     setIndiceFase(0);
@@ -196,7 +294,10 @@ export default function JogoEmocoes({ preferenciasVisuais = {}, onClose }) {
     if (!fase) return;
     setMensagemIncentivo(null);
 
-    const qtdDistratores = nivel === 'dificil' ? 5 : 3;
+    let qtdDistratores = 3;
+    if (nivel === 'facil') qtdDistratores = 1;
+    if (nivel === 'dificil') qtdDistratores = 5;
+
     const distratoresEmbaralhados = [...fase.distratores]
       .sort(() => 0.5 - Math.random())
       .slice(0, qtdDistratores);
@@ -207,17 +308,10 @@ export default function JogoEmocoes({ preferenciasVisuais = {}, onClose }) {
     setOpcoesAtuais(opcoes);
   };
 
-  const faseAtual = fasesPartida[indiceFase];
-
   const obterImagem = (item) => {
     if (!item) return '';
     const prefs = preferenciasVisuais || {};
     return prefs[item.texto] || item.padrao;
-  };
-
-  const tocarPergunta = () => {
-    if (!faseAtual) return;
-    emitirVoz(faseAtual.audioEnunciado, faseAtual.enunciado);
   };
 
   const lidarComSelecao = (opcao) => {
@@ -229,17 +323,15 @@ export default function JogoEmocoes({ preferenciasVisuais = {}, onClose }) {
       setBloqueado(true);
       setMensagemIncentivo('Muito bem! 🌟');
 
-      // Toca o áudio do cartão clicado
-      emitirVoz(opcao.audio, opcao.texto, () => {
-        // Toca o reforço positivo suave gravado
-        emitirVoz('acerto_suave.m4a', 'Muito bem!', () => {
+      tocarAudio(opcao.audio, opcao.texto, () => {
+        tocarAudio('acerto_suave.m4a', 'Muito bem!', () => {
           const novasEstrelas = estrelas + 1;
           setEstrelas(novasEstrelas);
 
           setTimeout(() => {
             if (novasEstrelas >= fasesPartida.length) {
               setConcluido(true);
-              emitirVoz('parabens_final.m4a', 'Parabéns! Você conseguiu!');
+              tocarAudio('parabens_final.m4a', 'Parabéns! Você conseguiu!');
             } else {
               const proximo = indiceFase + 1;
               setCartaoSelecionado(null);
@@ -252,7 +344,7 @@ export default function JogoEmocoes({ preferenciasVisuais = {}, onClose }) {
       });
     } else {
       setErrosPartida(prev => prev + 1);
-      emitirVoz(opcao.audio, opcao.texto);
+      tocarAudio(opcao.audio, opcao.texto);
 
       setTimeout(() => {
         setCartaoSelecionado(null);
@@ -279,7 +371,13 @@ export default function JogoEmocoes({ preferenciasVisuais = {}, onClose }) {
     }}>
       <button
         type="button"
-        onClick={onClose}
+        onClick={() => {
+          if (audioAtualRef.current) audioAtualRef.current.pause();
+          if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+          }
+          onClose();
+        }}
         style={{
           position: 'absolute',
           top: 16,
@@ -299,7 +397,6 @@ export default function JogoEmocoes({ preferenciasVisuais = {}, onClose }) {
         ✖
       </button>
 
-      {/* MENU DE SELEÇÃO */}
       {etapaMenu ? (
         <div style={{
           textAlign: 'center',
@@ -323,39 +420,41 @@ export default function JogoEmocoes({ preferenciasVisuais = {}, onClose }) {
               onClick={() => iniciarNovaPartida('facil')}
               style={estiloBotaoNivel('#22c55e', '#4ade80')}
             >
-              🟢 Fácil — 4 opções
+              🟢 Fácil — 2 opções (5 rodadas)
             </button>
             <button
               onClick={() => iniciarNovaPartida('medio')}
               style={estiloBotaoNivel('#38bdf8', '#38bdf8')}
             >
-              🔵 Médio — 4 opções (padrão)
+              🔵 Médio — 4 opções (8 rodadas)
             </button>
             <button
               onClick={() => iniciarNovaPartida('dificil')}
               style={estiloBotaoNivel('#a855f7', '#c084fc')}
             >
-              🟣 Difícil — 6 opções
+              🟣 Difícil — 6 opções (10 rodadas)
             </button>
           </div>
         </div>
       ) : (
         <>
-          {/* Trilha de Estrelas */}
           <div style={{
             display: 'flex',
-            gap: 10,
-            marginBottom: 18,
+            gap: 8,
+            marginBottom: 16,
             background: '#0f172a',
-            padding: '8px 22px',
+            padding: '8px 18px',
             borderRadius: 24,
-            border: '1px solid #334155'
+            border: '1px solid #334155',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            maxWidth: '90%'
           }}>
-            {[0, 1, 2, 3, 4].map((idx) => (
+            {fasesPartida.map((_, idx) => (
               <span
                 key={idx}
                 style={{
-                  fontSize: '1.75rem',
+                  fontSize: fasesPartida.length > 8 ? '1.4rem' : '1.75rem',
                   filter: idx < estrelas ? 'none' : 'grayscale(100%) opacity(0.3)',
                   transform: idx < estrelas ? 'scale(1.12)' : 'scale(1)',
                   transition: 'all 0.3s ease'
@@ -366,7 +465,6 @@ export default function JogoEmocoes({ preferenciasVisuais = {}, onClose }) {
             ))}
           </div>
 
-          {/* RELATÓRIO FINAL */}
           {concluido ? (
             <div style={{
               textAlign: 'center',
@@ -404,7 +502,7 @@ export default function JogoEmocoes({ preferenciasVisuais = {}, onClose }) {
                 </h4>
 
                 <Linha label="Nível" valor={dificuldade.toUpperCase()} cor="#38bdf8" />
-                <Linha label="Estrelas" valor={`${estrelas} de 5`} cor="#4ade80" />
+                <Linha label="Estrelas" valor={`${estrelas} de ${fasesPartida.length}`} cor="#4ade80" />
                 <Linha
                   label="Erros / Tentativas Extras"
                   valor={errosPartida}
@@ -412,7 +510,7 @@ export default function JogoEmocoes({ preferenciasVisuais = {}, onClose }) {
                 />
                 <Linha
                   label="Aproveitamento Geral"
-                  valor={`${Math.round((5 / (5 + errosPartida)) * 100)}%`}
+                  valor={`${Math.round((fasesPartida.length / (fasesPartida.length + errosPartida)) * 100)}%`}
                   cor="#f8fafc"
                 />
               </div>
@@ -451,7 +549,6 @@ export default function JogoEmocoes({ preferenciasVisuais = {}, onClose }) {
               </div>
             </div>
           ) : (
-            /* TELA DA ATIVIDADE */
             <div style={{
               display: 'flex',
               flexDirection: 'column',
@@ -520,12 +617,15 @@ export default function JogoEmocoes({ preferenciasVisuais = {}, onClose }) {
                 )}
               </div>
 
-              {/* Grade de opções neutras */}
               <div style={{
                 display: 'grid',
-                gridTemplateColumns: dificuldade === 'dificil' ? 'repeat(3, 1fr)' : 'repeat(2, 1fr)',
+                gridTemplateColumns:
+                  dificuldade === 'dificil'
+                    ? 'repeat(3, 1fr)'
+                    : 'repeat(2, 1fr)',
                 gap: 14,
-                width: '100%'
+                width: '100%',
+                maxWidth: dificuldade === 'facil' ? 420 : 580
               }}>
                 {opcoesAtuais.map((op) => {
                   const ehAlvo = op.texto === faseAtual?.alvo?.texto;
