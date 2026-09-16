@@ -55,6 +55,7 @@ html, body, #root {
   height: 100dvh;
   background-color: #1e293b;
   overflow: hidden;
+  position: relative;
 }
 
 /* 1. Barra Superior Integrada */
@@ -633,6 +634,17 @@ html, body, #root {
     font-size: 0.98rem;
     margin-top: 4px;
   }
+
+  .fab-button {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+
+  .fab-lock-container {
+    bottom: 14px;
+    right: 14px;
+  }
 }
 
 /* ==========================================================
@@ -649,4 +661,76 @@ html, body, #root {
 /* Suporte ao Modo Calmo Sensorial */
 .sensory-calm-mode {
   filter: saturate(0.8) contrast(0.92);
+}
+
+/* ==========================================================
+   7. BOTÃO FLUTUANTE (FAB) COM TRAVA DE TOQUE LONGO
+   ========================================================== */
+.fab-lock-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9990;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.fab-button {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0284c7, #0369a1);
+  border: 3px solid #38bdf8;
+  color: #ffffff;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(2, 132, 199, 0.45);
+  position: relative;
+  touch-action: none;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.fab-button:active {
+  transform: scale(0.94);
+}
+
+.fab-progress-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  pointer-events: none;
+  transition: border-color 0.15s ease;
+}
+
+.fab-progress-ring.holding {
+  border-color: #22c55e;
+  box-shadow: 0 0 14px rgba(34, 197, 94, 0.7);
+  animation: pulse-ring 0.3s infinite alternate;
+}
+
+@keyframes pulse-ring {
+  from { transform: scale(1); }
+  to { transform: scale(1.06); }
+}
+
+.fab-tooltip {
+  position: absolute;
+  bottom: 68px;
+  background: #0f172a;
+  border: 1px solid #334155;
+  color: #94a3b8;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 8px;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }

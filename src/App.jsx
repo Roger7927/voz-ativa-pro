@@ -441,6 +441,10 @@ export default function App() {
   const [gravando, setGravando] = useState(false);
   const [audioGravadoBlob, setAudioGravadoBlob] = useState(null);
 
+  // Estados e Referências do Botão Flutuante (FAB) com Toque Longo
+  const timerToqueLongoRef = useRef(null);
+  const [segurandoFab, setSegurandoFab] = useState(false);
+
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
 
@@ -483,6 +487,26 @@ export default function App() {
     const novoMapa = { ...preferenciasVisuais, [textoCartao]: arquivoEscolhido };
     setPreferenciasVisuais(novoMapa);
     await localforage.setItem('custom_visual_skins', novoMapa);
+  };
+
+  // Funções de Controle do Botão Flutuante (FAB)
+  const iniciarToqueLongo = () => {
+    setSegurandoFab(true);
+    timerToqueLongoRef.current = setTimeout(() => {
+      setSegurandoFab(false);
+      if (typeof navigator !== 'undefined' && navigator.vibrate) {
+        navigator.vibrate(50);
+      }
+      setModalAberto(true);
+    }, 2500);
+  };
+
+  const cancelarToqueLongo = () => {
+    setSegurandoFab(false);
+    if (timerToqueLongoRef.current) {
+      clearTimeout(timerToqueLongoRef.current);
+      timerToqueLongoRef.current = null;
+    }
   };
 
   const reproduzirItemVoz = (item, aoFinalizar = null) => {
@@ -1460,6 +1484,24 @@ export default function App() {
           onComplete={() => setJogoSelecionado(null)}
         />
       )}
+
+      {/* 8. Botão Flutuante (FAB) com Trava de Toque Longo */}
+      <div className="fab-lock-container">
+        {segurandoFab && <div className="fab-tooltip">Segure para abrir...</div>}
+        <button
+          type="button"
+          className="fab-button"
+          title="Segure por 2.5 segundos para cadastrar cartão"
+          onMouseDown={iniciarToqueLongo}
+          onMouseUp={cancelarToqueLongo}
+          onMouseLeave={cancelarToqueLongo}
+          onTouchStart={iniciarToqueLongo}
+          onTouchEnd={cancelarToqueLongo}
+        >
+          <div className={`fab-progress-ring ${segurandoFab ? 'holding' : ''}`} />
+          ＋
+        </button>
+      </div>
     </div>
   );
 }
