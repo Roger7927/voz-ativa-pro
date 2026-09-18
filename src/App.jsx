@@ -6,6 +6,7 @@ import JogoMemoria from './JogoMemoria';
 import JogoRotina from './JogoRotina';
 import JogoFrases from './JogoFrases';
 import JogoFuncional from './JogoFuncional';
+import JogoAlfabetizacao from './JogoAlfabetizacao';
 import CognitiveChallenge from './CognitiveChallenge';
 import './index.css';
 
@@ -441,7 +442,6 @@ export default function App() {
   const [gravando, setGravando] = useState(false);
   const [audioGravadoBlob, setAudioGravadoBlob] = useState(null);
 
-  // Estados e Referências do Botão Flutuante (FAB) com Toque Longo
   const timerToqueLongoRef = useRef(null);
   const [segurandoFab, setSegurandoFab] = useState(false);
 
@@ -489,7 +489,6 @@ export default function App() {
     await localforage.setItem('custom_visual_skins', novoMapa);
   };
 
-  // Funções de Controle do Botão Flutuante (FAB)
   const iniciarToqueLongo = () => {
     setSegurandoFab(true);
     timerToqueLongoRef.current = setTimeout(() => {
@@ -846,7 +845,7 @@ export default function App() {
         </button>
       </nav>
 
-      {/* 3. Grade Principal de Comunicação (100% Desobstruída) */}
+      {/* 3. Grade Principal de Comunicação */}
       <main className="board-container">
         <div className="board-grid">
           {cartoesVisiveis.map((c) => (
@@ -1411,6 +1410,35 @@ export default function App() {
               </p>
             </div>
 
+            {/* Novo Card do Jogo de Alfabetização */}
+            <div
+              onClick={() => {
+                setHubJogosAberto(false);
+                setJogoSelecionado('alfabetizacao');
+              }}
+              style={{
+                background: '#0f172a',
+                border: '2px solid #38bdf8',
+                borderRadius: '20px',
+                padding: '22px',
+                width: '210px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                cursor: 'pointer',
+                boxShadow: '0 6px 16px rgba(0, 0, 0, 0.4)',
+                transition: 'transform 0.2s ease'
+              }}
+            >
+              <span style={{ fontSize: '3rem', marginBottom: '10px' }}>🔤</span>
+              <h3 style={{ color: '#38bdf8', fontSize: '1.2rem', margin: '0 0 6px 0', textAlign: 'center' }}>
+                Letras e Números
+              </h3>
+              <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>
+                Alfabetização e numerais assistivos
+              </p>
+            </div>
+
             <div
               onClick={() => {
                 setHubJogosAberto(false);
@@ -1473,6 +1501,13 @@ export default function App() {
 
       {jogoSelecionado === 'funcional' && (
         <JogoFuncional
+          preferenciasVisuais={preferenciasVisuais}
+          onClose={() => setJogoSelecionado(null)}
+        />
+      )}
+
+      {jogoSelecionado === 'alfabetizacao' && (
+        <JogoAlfabetizacao
           preferenciasVisuais={preferenciasVisuais}
           onClose={() => setJogoSelecionado(null)}
         />
