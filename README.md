@@ -1,17 +1,22 @@
-# React + Vite
+# Voz Ativa Pro - CAA (Comunicação Alternativa e Aumentativa)
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Plataforma interativa assistiva voltada para apoio pedagógico, comunicação de pessoas não verbais e estímulo ao raciocínio lógico-cognitivo.
 
-Currently, two official plugins are available:
+## Autoria e Propriedade Intelectual
+* **Autor:** Guillermo Roger Hernandez Chandia
+* **Curso:** CST em Análise e Desenvolvimento de Sistemas (ADS)
+* **Status:** Todos os Direitos Reservados (All Rights Reserved)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Módulos Cognitivos Concluídos
+1. Detetive das Emoções
+2. Cadê o Par?
+3. Minha Rotina
+4. Fábrica de Frases
+5. Para Que Serve?
+6. Letras, Números e Continhas
+7. Engine Cognitiva
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
-# voz-ativa-pro
+## Telemetria Clínica Integrada
+* Latência de resposta (ms)
+* Taxa de acerto direto (Direct Hit Rate)
+* Contagem de tentativas
