@@ -22,7 +22,7 @@ const MAPA_IMAGENS = {
   "Gostei Muito": "gostei-muito.png", "Professora": "professora.png", "Colega": "colega.png",
   "Mamãe": "mamae.png", "Papai": "papai.png", "Você": "voce.png", "Vovó": "vovo-f.png",
   "Vovô": "vovo-m.png", "Irmão": "irmao.png", "Irmã": "irma.png",
-  "Terapeuta": "terapeuta.png", "Cuidador": "cuidador.png", "Médico": "medico.png",
+  "Terapeuta": "terapeuta.png", "Cuidador": "cuidador.png", "Cuidadora": "cuidadora.png", "Médico": "medico.png",
   "Leite": "leite.png", "Maçã": "maca.png", "Banana": "banana.png", "Bolacha": "bolacha.png",
   "Pão": "pao.png", "Arroz e Feijão": "arroz-feijao.png", "Carne": "carne.png", "Bolo": "bolo.png",
   "Suco": "suco.png", "Iogurte": "iogurte.png", "Chocolate": "chocolate.png", "Pizza": "pizza.png",
@@ -189,12 +189,32 @@ const VARIACOES_DISPONIVEIS = {
   "Professora": [
     { label: "Padrão", img: "professora.png" },
     { label: "Representativo", img: "professora-dark.png" }
+  ],
+  "Terapeuta": [
+    { label: "Padrão", img: "terapeuta.png" },
+    { label: "Representativo", img: "terapeuta-dark.png" },
+    { label: "Terapeuta Homem", img: "terapeuta-homem.png" },
+    { label: "Terapeuta H. Dark", img: "terapeuta-homem-dark.png" }
+  ],
+  "Médico": [
+    { label: "Padrão", img: "medico.png" },
+    { label: "Representativo", img: "medico-dark.png" },
+    { label: "Médica", img: "medica.png" },
+    { label: "Médica Dark", img: "medica-dark.png" }
+  ],
+  "Cuidador": [
+    { label: "Padrão", img: "cuidador.png" },
+    { label: "Representativo", img: "cuidador-dark.png" }
+  ],
+  "Cuidadora": [
+    { label: "Padrão", img: "cuidadora.png" },
+    { label: "Representativo", img: "cuidadora-negra-dark.png" }
   ]
 };
 
 localforage.config({
   name: 'VozAtivaPro',
-  storeName: 'aac_dados_v15'
+  storeName: 'aac_dados_v17'
 });
 
 const ICONES_BASE = {
@@ -404,7 +424,7 @@ const DADOS_COMPLETOS = [
   { id: 's7', texto: 'Calma', chaveSvg: 'happy', cat: 'sentimentos', cor: 'c-feeling', audio: 'calma.m4a' },
   { id: 's8', texto: 'Gostei Muito', chaveSvg: 'heart', cat: 'sentimentos', cor: 'c-social', audio: 'gostei_muito.m4a' },
 
-  // 5. Pessoas (Matriz 3x4 Completa)
+  // 5. Pessoas (Matriz Completa com Rede Terapêutica e Cuidadores)
   { id: 'p1', texto: 'Professora', chaveSvg: 'teacher', cat: 'pessoas', cor: 'c-people', audio: 'Professora.m4a' },
   { id: 'p2', texto: 'Colega', chaveSvg: 'friend', cat: 'pessoas', cor: 'c-people', audio: 'Colega.m4a' },
   { id: 'p3', texto: 'Mamãe', chaveSvg: 'mother', cat: 'pessoas', cor: 'c-people', audio: 'Mamãe.m4a' },
@@ -416,6 +436,7 @@ const DADOS_COMPLETOS = [
   { id: 'p9', texto: 'Irmã', chaveSvg: 'user', cat: 'pessoas', cor: 'c-people', audio: 'irma.m4a' },
   { id: 'p10', texto: 'Terapeuta', chaveSvg: 'teacher', cat: 'pessoas', cor: 'c-people', audio: 'terapeuta.m4a' },
   { id: 'p11', texto: 'Cuidador', chaveSvg: 'user', cat: 'pessoas', cor: 'c-people', audio: 'cuidador.m4a' },
+  { id: 'p13', texto: 'Cuidadora', chaveSvg: 'user', cat: 'pessoas', cor: 'c-people', audio: 'cuidador.m4a' },
   { id: 'p12', texto: 'Médico', chaveSvg: 'user', cat: 'pessoas', cor: 'c-people', audio: 'medico.m4a' }
 ];
 
@@ -454,12 +475,12 @@ export default function App() {
         const prefsSalvas = await localforage.getItem('custom_visual_skins');
         if (prefsSalvas) setPreferenciasVisuais(prefsSalvas);
 
-        const cardsSalvos = await localforage.getItem('custom_cards_v15');
+        const cardsSalvos = await localforage.getItem('custom_cards_v17');
         if (cardsSalvos && cardsSalvos.length > 0) {
           setCards(cardsSalvos);
         } else {
           setCards(DADOS_COMPLETOS);
-          await localforage.setItem('custom_cards_v15', DADOS_COMPLETOS);
+          await localforage.setItem('custom_cards_v17', DADOS_COMPLETOS);
         }
 
         const fotoSalva = await localforage.getItem('child_photo');
@@ -691,7 +712,7 @@ export default function App() {
 
     const listaAtualizada = [...cards, novoCard];
     setCards(listaAtualizada);
-    await localforage.setItem('custom_cards_v15', listaAtualizada);
+    await localforage.setItem('custom_cards_v17', listaAtualizada);
 
     setNovoTexto('');
     setFotoCartaoCustom(null);
