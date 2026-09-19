@@ -208,13 +208,13 @@ const VARIACOES_DISPONIVEIS = {
   ],
   "Cuidadora": [
     { label: "Padrão", img: "cuidadora.png" },
-    { label: "Representativo", img: "cuidadora-dark.png" }
+    { label: "Negra", img: "cuidadora-dark.png" }
   ]
 };
 
 localforage.config({
   name: 'VozAtivaPro',
-  storeName: 'aac_dados_v18'
+  storeName: 'aac_dados_v19'
 });
 
 const ICONES_BASE = {
@@ -475,12 +475,12 @@ export default function App() {
         const prefsSalvas = await localforage.getItem('custom_visual_skins');
         if (prefsSalvas) setPreferenciasVisuais(prefsSalvas);
 
-        const cardsSalvos = await localforage.getItem('custom_cards_v18');
+        const cardsSalvos = await localforage.getItem('custom_cards_v19');
         if (cardsSalvos && cardsSalvos.length > 0) {
           setCards(cardsSalvos);
         } else {
           setCards(DADOS_COMPLETOS);
-          await localforage.setItem('custom_cards_v18', DADOS_COMPLETOS);
+          await localforage.setItem('custom_cards_v19', DADOS_COMPLETOS);
         }
 
         const fotoSalva = await localforage.getItem('child_photo');
@@ -712,7 +712,7 @@ export default function App() {
 
     const listaAtualizada = [...cards, novoCard];
     setCards(listaAtualizada);
-    await localforage.setItem('custom_cards_v18', listaAtualizada);
+    await localforage.setItem('custom_cards_v19', listaAtualizada);
 
     setNovoTexto('');
     setFotoCartaoCustom(null);
