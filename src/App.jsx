@@ -208,13 +208,13 @@ const VARIACOES_DISPONIVEIS = {
   ],
   "Cuidadora": [
     { label: "Padrão", img: "cuidadora.png" },
-    { label: "Representativo", img: "cuidadora-negra-dark.png" }
+    { label: "Representativo", img: "cuidadora-dark.png" }
   ]
 };
 
 localforage.config({
   name: 'VozAtivaPro',
-  storeName: 'aac_dados_v17'
+  storeName: 'aac_dados_v18'
 });
 
 const ICONES_BASE = {
@@ -372,7 +372,7 @@ const ICONES_BASE = {
 };
 
 const DADOS_COMPLETOS = [
-  // 1. Necessidades Fisiológicas (Matriz 4x4 Completa)
+  // 1. Necessidades Fisiológicas
   { id: 'b1', texto: 'Água', chaveSvg: 'agua', cat: 'necessidades', cor: 'c-object', audio: 'agua.m4a' },
   { id: 'b2', texto: 'Comer', chaveSvg: 'comer', cat: 'necessidades', cor: 'c-action', audio: 'comer.m4a' },
   { id: 'b3', texto: 'Banheiro', chaveSvg: 'banheiro', cat: 'necessidades', cor: 'c-object', audio: 'banheiro.m4a' },
@@ -390,7 +390,7 @@ const DADOS_COMPLETOS = [
   { id: 'b15', texto: 'Desenhar', chaveSvg: 'play', cat: 'necessidades', cor: 'c-action', audio: 'desenhar.m4a' },
   { id: 'b16', texto: 'Ver Livro', chaveSvg: 'play', cat: 'necessidades', cor: 'c-action', audio: 'ver_livro.m4a' },
 
-  // 2. Categoria: Alimentação (12 Itens Sintonizados)
+  // 2. Categoria: Alimentação
   { id: 'al_leite', texto: 'Leite', chaveSvg: 'agua', cat: 'alimentacao', cor: 'c-object', audio: 'leite.m4a' },
   { id: 'al_maca', texto: 'Maçã', chaveSvg: 'comer', cat: 'alimentacao', cor: 'c-object', audio: 'maca.m4a' },
   { id: 'al_banana', texto: 'Banana', chaveSvg: 'comer', cat: 'alimentacao', cor: 'c-object', audio: 'banana.m4a' },
@@ -424,7 +424,7 @@ const DADOS_COMPLETOS = [
   { id: 's7', texto: 'Calma', chaveSvg: 'happy', cat: 'sentimentos', cor: 'c-feeling', audio: 'calma.m4a' },
   { id: 's8', texto: 'Gostei Muito', chaveSvg: 'heart', cat: 'sentimentos', cor: 'c-social', audio: 'gostei_muito.m4a' },
 
-  // 5. Pessoas (Matriz Completa com Rede Terapêutica e Cuidadores)
+  // 5. Pessoas
   { id: 'p1', texto: 'Professora', chaveSvg: 'teacher', cat: 'pessoas', cor: 'c-people', audio: 'Professora.m4a' },
   { id: 'p2', texto: 'Colega', chaveSvg: 'friend', cat: 'pessoas', cor: 'c-people', audio: 'Colega.m4a' },
   { id: 'p3', texto: 'Mamãe', chaveSvg: 'mother', cat: 'pessoas', cor: 'c-people', audio: 'Mamãe.m4a' },
@@ -475,12 +475,12 @@ export default function App() {
         const prefsSalvas = await localforage.getItem('custom_visual_skins');
         if (prefsSalvas) setPreferenciasVisuais(prefsSalvas);
 
-        const cardsSalvos = await localforage.getItem('custom_cards_v17');
+        const cardsSalvos = await localforage.getItem('custom_cards_v18');
         if (cardsSalvos && cardsSalvos.length > 0) {
           setCards(cardsSalvos);
         } else {
           setCards(DADOS_COMPLETOS);
-          await localforage.setItem('custom_cards_v17', DADOS_COMPLETOS);
+          await localforage.setItem('custom_cards_v18', DADOS_COMPLETOS);
         }
 
         const fotoSalva = await localforage.getItem('child_photo');
@@ -712,7 +712,7 @@ export default function App() {
 
     const listaAtualizada = [...cards, novoCard];
     setCards(listaAtualizada);
-    await localforage.setItem('custom_cards_v17', listaAtualizada);
+    await localforage.setItem('custom_cards_v18', listaAtualizada);
 
     setNovoTexto('');
     setFotoCartaoCustom(null);
@@ -728,7 +728,7 @@ export default function App() {
       <header className="sentence-bar">
         <div className="profile-pill" onClick={() => setModalAberto(true)} title="Configurações">
           {fotoPerfil ? (
-            <img src={fotoPerfil} alt="Perfil" className="profile-img" />
+            <img src={fotoPerfil} alt="Perfil" className="profile-img" loading="lazy" decoding="async" />
           ) : (
             <div className="profile-avatar-fallback">👤</div>
           )}
@@ -747,12 +747,14 @@ export default function App() {
                 onClick={() => setFrase(frase.filter((_, i) => i !== idx))}
               >
                 {tok.imagemCustom ? (
-                  <img src={tok.imagemCustom} alt={tok.texto} className="token-img" />
+                  <img src={tok.imagemCustom} alt={tok.texto} className="token-img" loading="lazy" decoding="async" />
                 ) : (
                   <img 
                     src={`/img/${preferenciasVisuais[tok.texto] || MAPA_IMAGENS[tok.texto] || tok.id + ".png"}`} 
                     alt={tok.texto} 
                     className="token-img"
+                    loading="lazy"
+                    decoding="async"
                     onError={(e) => {
                       e.target.style.display = "none";
                       if (e.target.nextElementSibling) e.target.nextElementSibling.style.display = "block";
@@ -775,7 +777,7 @@ export default function App() {
         </button>
       </header>
 
-      {/* 2. Categorias com Navegação e Botões de Controle */}
+      {/* 2. Categorias */}
       <nav className="categories-tabs" style={{ display: 'flex', overflowX: 'auto', gap: '8px', padding: '8px 12px' }}>
         <button
           type="button"
@@ -866,7 +868,7 @@ export default function App() {
         </button>
       </nav>
 
-      {/* 3. Grade Principal de Comunicação */}
+      {/* 3. Grade Principal */}
       <main className="board-container">
         <div className="board-grid">
           {cartoesVisiveis.map((c) => (
@@ -878,12 +880,14 @@ export default function App() {
             >
               <div className="card-visual-box">
                 {c.imagemCustom ? (
-                  <img src={c.imagemCustom} alt={c.texto} className="card-custom-img" />
+                  <img src={c.imagemCustom} alt={c.texto} className="card-custom-img" loading="lazy" decoding="async" />
                 ) : (
                   <img 
                     src={`/img/${preferenciasVisuais[c.texto] || MAPA_IMAGENS[c.texto] || c.id + ".png"}`} 
                     alt={c.texto} 
                     className="card-custom-img"
+                    loading="lazy"
+                    decoding="async"
                     onError={(e) => {
                       e.target.style.display = "none";
                       if (e.target.nextElementSibling) e.target.nextElementSibling.style.display = "block";
@@ -900,7 +904,7 @@ export default function App() {
         </div>
       </main>
 
-      {/* 4. Modal Central de Ajuda Imediata */}
+      {/* 4. Modal de Emergência */}
       {menuEmergenciaAberto && (
         <div
           style={{
@@ -1047,7 +1051,7 @@ export default function App() {
                 <div className="profile-edit-row">
                   <label className="photo-upload-label">
                     {fotoPerfil ? (
-                      <img src={fotoPerfil} alt="Perfil" className="photo-preview" />
+                      <img src={fotoPerfil} alt="Perfil" className="photo-preview" loading="lazy" decoding="async" />
                     ) : (
                       <div className="photo-placeholder">+ Foto</div>
                     )}
@@ -1137,6 +1141,8 @@ export default function App() {
                                 <img
                                   src={`/img/${op.img}`}
                                   alt={op.label}
+                                  loading="lazy"
+                                  decoding="async"
                                   style={{
                                     width: '68px',
                                     height: '68px',
@@ -1182,7 +1188,7 @@ export default function App() {
 
                 <div className="card-photo-selector">
                   {fotoCartaoCustom ? (
-                    <img src={fotoCartaoCustom} alt="Prévia" className="card-img-preview" />
+                    <img src={fotoCartaoCustom} alt="Prévia" className="card-img-preview" loading="lazy" decoding="async" />
                   ) : (
                     <span style={{ fontSize: '0.85rem', color: '#94a3b8' }}>Nenhuma imagem anexada</span>
                   )}
@@ -1240,7 +1246,7 @@ export default function App() {
         </div>
       )}
 
-      {/* 6. Menu Seletor Central (Activity Hub) */}
+      {/* 6. Menu Seletor Central */}
       {hubJogosAberto && (
         <div style={{
           position: 'fixed',
@@ -1302,10 +1308,7 @@ export default function App() {
               paddingBottom: '32px'
             }}>
               <div
-                onClick={() => {
-                  setHubJogosAberto(false);
-                  setJogoSelecionado('emocoes');
-                }}
+                onClick={() => { setHubJogosAberto(false); setJogoSelecionado('emocoes'); }}
                 style={{
                   background: '#0f172a',
                   border: '2px solid #38bdf8',
@@ -1321,19 +1324,12 @@ export default function App() {
                 }}
               >
                 <span style={{ fontSize: '2.8rem', marginBottom: '8px' }}>🎭</span>
-                <h3 style={{ color: '#f8fafc', fontSize: '1.15rem', margin: '0 0 6px 0', textAlign: 'center' }}>
-                  Detetive das Emoções
-                </h3>
-                <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>
-                  Narração e apoio visual das emoções
-                </p>
+                <h3 style={{ color: '#f8fafc', fontSize: '1.15rem', margin: '0 0 6px 0', textAlign: 'center' }}>Detetive das Emoções</h3>
+                <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>Narração e apoio visual das emoções</p>
               </div>
 
               <div
-                onClick={() => {
-                  setHubJogosAberto(false);
-                  setJogoSelecionado('memoria');
-                }}
+                onClick={() => { setHubJogosAberto(false); setJogoSelecionado('memoria'); }}
                 style={{
                   background: '#0f172a',
                   border: '2px solid #22c55e',
@@ -1349,19 +1345,12 @@ export default function App() {
                 }}
               >
                 <span style={{ fontSize: '2.8rem', marginBottom: '8px' }}>🃏</span>
-                <h3 style={{ color: '#f8fafc', fontSize: '1.15rem', margin: '0 0 6px 0', textAlign: 'center' }}>
-                  Cadê o Par?
-                </h3>
-                <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>
-                  Memória sensorial sem estresse de tempo
-                </p>
+                <h3 style={{ color: '#f8fafc', fontSize: '1.15rem', margin: '0 0 6px 0', textAlign: 'center' }}>Cadê o Par?</h3>
+                <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>Memória sensorial sem estresse de tempo</p>
               </div>
 
               <div
-                onClick={() => {
-                  setHubJogosAberto(false);
-                  setJogoSelecionado('rotina');
-                }}
+                onClick={() => { setHubJogosAberto(false); setJogoSelecionado('rotina'); }}
                 style={{
                   background: '#0f172a',
                   border: '2px solid #f59e0b',
@@ -1377,19 +1366,12 @@ export default function App() {
                 }}
               >
                 <span style={{ fontSize: '2.8rem', marginBottom: '8px' }}>📋</span>
-                <h3 style={{ color: '#f8fafc', fontSize: '1.15rem', margin: '0 0 6px 0', textAlign: 'center' }}>
-                  Minha Rotina
-                </h3>
-                <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>
-                  Sequenciamento lógico de passos diários
-                </p>
+                <h3 style={{ color: '#f8fafc', fontSize: '1.15rem', margin: '0 0 6px 0', textAlign: 'center' }}>Minha Rotina</h3>
+                <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>Sequenciamento lógico de passos diários</p>
               </div>
 
               <div
-                onClick={() => {
-                  setHubJogosAberto(false);
-                  setJogoSelecionado('frases');
-                }}
+                onClick={() => { setHubJogosAberto(false); setJogoSelecionado('frases'); }}
                 style={{
                   background: '#0f172a',
                   border: '2px solid #a855f7',
@@ -1405,19 +1387,12 @@ export default function App() {
                 }}
               >
                 <span style={{ fontSize: '2.8rem', marginBottom: '8px' }}>💬</span>
-                <h3 style={{ color: '#f8fafc', fontSize: '1.15rem', margin: '0 0 6px 0', textAlign: 'center' }}>
-                  Fábrica de Frases
-                </h3>
-                <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>
-                  Aprenda a juntar cartões e formar frases
-                </p>
+                <h3 style={{ color: '#f8fafc', fontSize: '1.15rem', margin: '0 0 6px 0', textAlign: 'center' }}>Fábrica de Frases</h3>
+                <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>Aprenda a juntar cartões e formar frases</p>
               </div>
 
               <div
-                onClick={() => {
-                  setHubJogosAberto(false);
-                  setJogoSelecionado('funcional');
-                }}
+                onClick={() => { setHubJogosAberto(false); setJogoSelecionado('funcional'); }}
                 style={{
                   background: '#0f172a',
                   border: '2px solid #06b6d4',
@@ -1433,19 +1408,12 @@ export default function App() {
                 }}
               >
                 <span style={{ fontSize: '2.8rem', marginBottom: '8px' }}>🎯</span>
-                <h3 style={{ color: '#22d3ee', fontSize: '1.15rem', margin: '0 0 6px 0', textAlign: 'center' }}>
-                  Para Que Serve?
-                </h3>
-                <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>
-                  Raciocínio prático de causas, necessidades e cuidados
-                </p>
+                <h3 style={{ color: '#22d3ee', fontSize: '1.15rem', margin: '0 0 6px 0', textAlign: 'center' }}>Para Que Serve?</h3>
+                <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>Raciocínio prático de causas, necessidades e cuidados</p>
               </div>
 
               <div
-                onClick={() => {
-                  setHubJogosAberto(false);
-                  setJogoSelecionado('alfabetizacao');
-                }}
+                onClick={() => { setHubJogosAberto(false); setJogoSelecionado('alfabetizacao'); }}
                 style={{
                   background: '#0f172a',
                   border: '2px solid #38bdf8',
@@ -1461,19 +1429,12 @@ export default function App() {
                 }}
               >
                 <span style={{ fontSize: '2.8rem', marginBottom: '8px' }}>🔤</span>
-                <h3 style={{ color: '#38bdf8', fontSize: '1.15rem', margin: '0 0 6px 0', textAlign: 'center' }}>
-                  Letras e Números
-                </h3>
-                <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>
-                  Alfabetização e numerais assistivos
-                </p>
+                <h3 style={{ color: '#38bdf8', fontSize: '1.15rem', margin: '0 0 6px 0', textAlign: 'center' }}>Letras e Números</h3>
+                <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>Alfabetização e numerais assistivos</p>
               </div>
 
               <div
-                onClick={() => {
-                  setHubJogosAberto(false);
-                  setJogoSelecionado('cognitive');
-                }}
+                onClick={() => { setHubJogosAberto(false); setJogoSelecionado('cognitive'); }}
                 style={{
                   background: '#0f172a',
                   border: '2px solid #ec4899',
@@ -1489,69 +1450,24 @@ export default function App() {
                 }}
               >
                 <span style={{ fontSize: '2.8rem', marginBottom: '8px' }}>🧠</span>
-                <h3 style={{ color: '#f472b6', fontSize: '1.15rem', margin: '0 0 6px 0', textAlign: 'center' }}>
-                  Engine Cognitiva
-                </h3>
-                <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>
-                  Validação lógica e estruturação de pensamento
-                </p>
+                <h3 style={{ color: '#f472b6', fontSize: '1.15rem', margin: '0 0 6px 0', textAlign: 'center' }}>Engine Cognitiva</h3>
+                <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>Validação lógica e estruturação de pensamento</p>
               </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* 7. Modais dos Jogos Integrados */}
-      {jogoSelecionado === 'emocoes' && (
-        <JogoEmocoes
-          preferenciasVisuais={preferenciasVisuais}
-          onClose={() => setJogoSelecionado(null)}
-        />
-      )}
+      {/* 7. Modais de Jogos */}
+      {jogoSelecionado === 'emocoes' && <JogoEmocoes preferenciasVisuais={preferenciasVisuais} onClose={() => setJogoSelecionado(null)} />}
+      {jogoSelecionado === 'memoria' && <JogoMemoria preferenciasVisuais={preferenciasVisuais} onClose={() => setJogoSelecionado(null)} />}
+      {jogoSelecionado === 'rotina' && <JogoRotina preferenciasVisuais={preferenciasVisuais} onClose={() => setJogoSelecionado(null)} />}
+      {jogoSelecionado === 'frases' && <JogoFrases preferenciasVisuais={preferenciasVisuais} onClose={() => setJogoSelecionado(null)} />}
+      {jogoSelecionado === 'funcional' && <JogoFuncional preferenciasVisuais={preferenciasVisuais} onClose={() => setJogoSelecionado(null)} />}
+      {jogoSelecionado === 'alfabetizacao' && <JogoAlfabetizacao preferenciasVisuais={preferenciasVisuais} onClose={() => setJogoSelecionado(null)} />}
+      {jogoSelecionado === 'cognitive' && <CognitiveChallenge onClose={() => setJogoSelecionado(null)} onComplete={() => setJogoSelecionado(null)} />}
 
-      {jogoSelecionado === 'memoria' && (
-        <JogoMemoria
-          preferenciasVisuais={preferenciasVisuais}
-          onClose={() => setJogoSelecionado(null)}
-        />
-      )}
-
-      {jogoSelecionado === 'rotina' && (
-        <JogoRotina
-          preferenciasVisuais={preferenciasVisuais}
-          onClose={() => setJogoSelecionado(null)}
-        />
-      )}
-
-      {jogoSelecionado === 'frases' && (
-        <JogoFrases
-          preferenciasVisuais={preferenciasVisuais}
-          onClose={() => setJogoSelecionado(null)}
-        />
-      )}
-
-      {jogoSelecionado === 'funcional' && (
-        <JogoFuncional
-          preferenciasVisuais={preferenciasVisuais}
-          onClose={() => setJogoSelecionado(null)}
-        />
-      )}
-
-      {jogoSelecionado === 'alfabetizacao' && (
-        <JogoAlfabetizacao
-          preferenciasVisuais={preferenciasVisuais}
-          onClose={() => setJogoSelecionado(null)}
-        />
-      )}
-
-      {jogoSelecionado === 'cognitive' && (
-        <CognitiveChallenge
-          onClose={() => setJogoSelecionado(null)}
-          onComplete={() => setJogoSelecionado(null)}
-        />
-      )}
-
-      {/* 8. Botão Flutuante (FAB) com Trava de Toque Longo */}
+      {/* 8. Botão Flutuante (FAB) */}
       <div className="fab-lock-container">
         {segurandoFab && <div className="fab-tooltip">Segure para abrir...</div>}
         <button
