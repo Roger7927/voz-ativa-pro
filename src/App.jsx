@@ -1223,248 +1223,258 @@ export default function App() {
       {hubJogosAberto && (
         <div style={{
           position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
+          inset: 0,
           background: 'rgba(2, 6, 23, 0.96)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
           zIndex: 9998,
-          padding: '20px'
+          overflowY: 'auto',
+          WebkitOverflowScrolling: 'touch',
+          padding: '24px 16px 48px 16px',
+          boxSizing: 'border-box'
         }}>
           <button
             type="button"
             onClick={() => setHubJogosAberto(false)}
             style={{
-              position: 'absolute',
-              top: '20px',
-              right: '20px',
+              position: 'fixed',
+              top: '16px',
+              right: '16px',
               background: '#ef4444',
               color: '#ffffff',
               border: 'none',
               borderRadius: '50%',
-              width: '45px',
-              height: '45px',
+              width: '44px',
+              height: '44px',
               fontSize: '1.2rem',
               cursor: 'pointer',
-              boxShadow: '0 4px 10px rgba(0, 0, 0, 0.5)'
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.6)',
+              zIndex: 9999,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
             }}
           >
             ✖
           </button>
 
-          <h2 style={{ color: '#38bdf8', fontSize: '2.1rem', marginBottom: '8px', textAlign: 'center' }}>
-            🎮 Brincar & Aprender
-          </h2>
-          <p style={{ color: '#94a3b8', fontSize: '1.1rem', marginBottom: '32px', textAlign: 'center' }}>
-            Escolha uma atividade interativa pedagógica:
-          </p>
-
           <div style={{
+            maxWidth: '1200px',
+            margin: '0 auto',
             display: 'flex',
-            gap: '20px',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            maxWidth: '1200px'
+            flexDirection: 'column',
+            alignItems: 'center',
+            minHeight: '100%',
+            justifyContent: 'flex-start'
           }}>
-            <div
-              onClick={() => {
-                setHubJogosAberto(false);
-                setJogoSelecionado('emocoes');
-              }}
-              style={{
-                background: '#0f172a',
-                border: '2px solid #38bdf8',
-                borderRadius: '20px',
-                padding: '22px',
-                width: '210px',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                cursor: 'pointer',
-                boxShadow: '0 6px 16px rgba(0, 0, 0, 0.4)',
-                transition: 'transform 0.2s ease'
-              }}
-            >
-              <span style={{ fontSize: '3rem', marginBottom: '10px' }}>🎭</span>
-              <h3 style={{ color: '#f8fafc', fontSize: '1.2rem', margin: '0 0 6px 0', textAlign: 'center' }}>
-                Detetive das Emoções
-              </h3>
-              <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>
-                Narração e apoio visual das emoções
-              </p>
-            </div>
+            <h2 style={{ color: '#38bdf8', fontSize: '2rem', margin: '16px 0 8px 0', textAlign: 'center' }}>
+              🎮 Brincar & Aprender
+            </h2>
+            <p style={{ color: '#94a3b8', fontSize: '1rem', marginBottom: '24px', textAlign: 'center', maxWidth: '480px' }}>
+              Escolha uma atividade interativa pedagógica:
+            </p>
 
-            <div
-              onClick={() => {
-                setHubJogosAberto(false);
-                setJogoSelecionado('memoria');
-              }}
-              style={{
-                background: '#0f172a',
-                border: '2px solid #22c55e',
-                borderRadius: '20px',
-                padding: '22px',
-                width: '210px',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                cursor: 'pointer',
-                boxShadow: '0 6px 16px rgba(0, 0, 0, 0.4)',
-                transition: 'transform 0.2s ease'
-              }}
-            >
-              <span style={{ fontSize: '3rem', marginBottom: '10px' }}>🃏</span>
-              <h3 style={{ color: '#f8fafc', fontSize: '1.2rem', margin: '0 0 6px 0', textAlign: 'center' }}>
-                Cadê o Par?
-              </h3>
-              <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>
-                Memória sensorial sem estresse de tempo
-              </p>
-            </div>
+            <div style={{
+              display: 'flex',
+              gap: '16px',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              width: '100%',
+              paddingBottom: '32px'
+            }}>
+              <div
+                onClick={() => {
+                  setHubJogosAberto(false);
+                  setJogoSelecionado('emocoes');
+                }}
+                style={{
+                  background: '#0f172a',
+                  border: '2px solid #38bdf8',
+                  borderRadius: '20px',
+                  padding: '20px',
+                  width: '100%',
+                  maxWidth: '240px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  cursor: 'pointer',
+                  boxShadow: '0 6px 16px rgba(0, 0, 0, 0.4)'
+                }}
+              >
+                <span style={{ fontSize: '2.8rem', marginBottom: '8px' }}>🎭</span>
+                <h3 style={{ color: '#f8fafc', fontSize: '1.15rem', margin: '0 0 6px 0', textAlign: 'center' }}>
+                  Detetive das Emoções
+                </h3>
+                <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>
+                  Narração e apoio visual das emoções
+                </p>
+              </div>
 
-            <div
-              onClick={() => {
-                setHubJogosAberto(false);
-                setJogoSelecionado('rotina');
-              }}
-              style={{
-                background: '#0f172a',
-                border: '2px solid #f59e0b',
-                borderRadius: '20px',
-                padding: '22px',
-                width: '210px',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                cursor: 'pointer',
-                boxShadow: '0 6px 16px rgba(0, 0, 0, 0.4)',
-                transition: 'transform 0.2s ease'
-              }}
-            >
-              <span style={{ fontSize: '3rem', marginBottom: '10px' }}>📋</span>
-              <h3 style={{ color: '#f8fafc', fontSize: '1.2rem', margin: '0 0 6px 0', textAlign: 'center' }}>
-                Minha Rotina
-              </h3>
-              <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>
-                Sequenciamento lógico de passos diários
-              </p>
-            </div>
+              <div
+                onClick={() => {
+                  setHubJogosAberto(false);
+                  setJogoSelecionado('memoria');
+                }}
+                style={{
+                  background: '#0f172a',
+                  border: '2px solid #22c55e',
+                  borderRadius: '20px',
+                  padding: '20px',
+                  width: '100%',
+                  maxWidth: '240px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  cursor: 'pointer',
+                  boxShadow: '0 6px 16px rgba(0, 0, 0, 0.4)'
+                }}
+              >
+                <span style={{ fontSize: '2.8rem', marginBottom: '8px' }}>🃏</span>
+                <h3 style={{ color: '#f8fafc', fontSize: '1.15rem', margin: '0 0 6px 0', textAlign: 'center' }}>
+                  Cadê o Par?
+                </h3>
+                <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>
+                  Memória sensorial sem estresse de tempo
+                </p>
+              </div>
 
-            <div
-              onClick={() => {
-                setHubJogosAberto(false);
-                setJogoSelecionado('frases');
-              }}
-              style={{
-                background: '#0f172a',
-                border: '2px solid #a855f7',
-                borderRadius: '20px',
-                padding: '22px',
-                width: '210px',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                cursor: 'pointer',
-                boxShadow: '0 6px 16px rgba(0, 0, 0, 0.4)',
-                transition: 'transform 0.2s ease'
-              }}
-            >
-              <span style={{ fontSize: '3rem', marginBottom: '10px' }}>💬</span>
-              <h3 style={{ color: '#f8fafc', fontSize: '1.2rem', margin: '0 0 6px 0', textAlign: 'center' }}>
-                Fábrica de Frases
-              </h3>
-              <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>
-                Aprenda a juntar cartões e formar frases
-              </p>
-            </div>
+              <div
+                onClick={() => {
+                  setHubJogosAberto(false);
+                  setJogoSelecionado('rotina');
+                }}
+                style={{
+                  background: '#0f172a',
+                  border: '2px solid #f59e0b',
+                  borderRadius: '20px',
+                  padding: '20px',
+                  width: '100%',
+                  maxWidth: '240px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  cursor: 'pointer',
+                  boxShadow: '0 6px 16px rgba(0, 0, 0, 0.4)'
+                }}
+              >
+                <span style={{ fontSize: '2.8rem', marginBottom: '8px' }}>📋</span>
+                <h3 style={{ color: '#f8fafc', fontSize: '1.15rem', margin: '0 0 6px 0', textAlign: 'center' }}>
+                  Minha Rotina
+                </h3>
+                <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>
+                  Sequenciamento lógico de passos diários
+                </p>
+              </div>
 
-            <div
-              onClick={() => {
-                setHubJogosAberto(false);
-                setJogoSelecionado('funcional');
-              }}
-              style={{
-                background: '#0f172a',
-                border: '2px solid #06b6d4',
-                borderRadius: '20px',
-                padding: '22px',
-                width: '210px',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                cursor: 'pointer',
-                boxShadow: '0 6px 16px rgba(0, 0, 0, 0.4)',
-                transition: 'transform 0.2s ease'
-              }}
-            >
-              <span style={{ fontSize: '3rem', marginBottom: '10px' }}>🎯</span>
-              <h3 style={{ color: '#22d3ee', fontSize: '1.2rem', margin: '0 0 6px 0', textAlign: 'center' }}>
-                Para Que Serve?
-              </h3>
-              <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>
-                Raciocínio prático de causas, necessidades e cuidados
-              </p>
-            </div>
+              <div
+                onClick={() => {
+                  setHubJogosAberto(false);
+                  setJogoSelecionado('frases');
+                }}
+                style={{
+                  background: '#0f172a',
+                  border: '2px solid #a855f7',
+                  borderRadius: '20px',
+                  padding: '20px',
+                  width: '100%',
+                  maxWidth: '240px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  cursor: 'pointer',
+                  boxShadow: '0 6px 16px rgba(0, 0, 0, 0.4)'
+                }}
+              >
+                <span style={{ fontSize: '2.8rem', marginBottom: '8px' }}>💬</span>
+                <h3 style={{ color: '#f8fafc', fontSize: '1.15rem', margin: '0 0 6px 0', textAlign: 'center' }}>
+                  Fábrica de Frases
+                </h3>
+                <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>
+                  Aprenda a juntar cartões e formar frases
+                </p>
+              </div>
 
-            {/* Novo Card do Jogo de Alfabetização */}
-            <div
-              onClick={() => {
-                setHubJogosAberto(false);
-                setJogoSelecionado('alfabetizacao');
-              }}
-              style={{
-                background: '#0f172a',
-                border: '2px solid #38bdf8',
-                borderRadius: '20px',
-                padding: '22px',
-                width: '210px',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                cursor: 'pointer',
-                boxShadow: '0 6px 16px rgba(0, 0, 0, 0.4)',
-                transition: 'transform 0.2s ease'
-              }}
-            >
-              <span style={{ fontSize: '3rem', marginBottom: '10px' }}>🔤</span>
-              <h3 style={{ color: '#38bdf8', fontSize: '1.2rem', margin: '0 0 6px 0', textAlign: 'center' }}>
-                Letras e Números
-              </h3>
-              <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>
-                Alfabetização e numerais assistivos
-              </p>
-            </div>
+              <div
+                onClick={() => {
+                  setHubJogosAberto(false);
+                  setJogoSelecionado('funcional');
+                }}
+                style={{
+                  background: '#0f172a',
+                  border: '2px solid #06b6d4',
+                  borderRadius: '20px',
+                  padding: '20px',
+                  width: '100%',
+                  maxWidth: '240px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  cursor: 'pointer',
+                  boxShadow: '0 6px 16px rgba(0, 0, 0, 0.4)'
+                }}
+              >
+                <span style={{ fontSize: '2.8rem', marginBottom: '8px' }}>🎯</span>
+                <h3 style={{ color: '#22d3ee', fontSize: '1.15rem', margin: '0 0 6px 0', textAlign: 'center' }}>
+                  Para Que Serve?
+                </h3>
+                <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>
+                  Raciocínio prático de causas, necessidades e cuidados
+                </p>
+              </div>
 
-            <div
-              onClick={() => {
-                setHubJogosAberto(false);
-                setJogoSelecionado('cognitive');
-              }}
-              style={{
-                background: '#0f172a',
-                border: '2px solid #ec4899',
-                borderRadius: '20px',
-                padding: '22px',
-                width: '210px',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                cursor: 'pointer',
-                boxShadow: '0 6px 16px rgba(0, 0, 0, 0.4)',
-                transition: 'transform 0.2s ease'
-              }}
-            >
-              <span style={{ fontSize: '3rem', marginBottom: '10px' }}>🧠</span>
-              <h3 style={{ color: '#f472b6', fontSize: '1.2rem', margin: '0 0 6px 0', textAlign: 'center' }}>
-                Engine Cognitiva
-              </h3>
-              <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>
-                Validação lógica e estruturação de pensamento
-              </p>
+              <div
+                onClick={() => {
+                  setHubJogosAberto(false);
+                  setJogoSelecionado('alfabetizacao');
+                }}
+                style={{
+                  background: '#0f172a',
+                  border: '2px solid #38bdf8',
+                  borderRadius: '20px',
+                  padding: '20px',
+                  width: '100%',
+                  maxWidth: '240px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  cursor: 'pointer',
+                  boxShadow: '0 6px 16px rgba(0, 0, 0, 0.4)'
+                }}
+              >
+                <span style={{ fontSize: '2.8rem', marginBottom: '8px' }}>🔤</span>
+                <h3 style={{ color: '#38bdf8', fontSize: '1.15rem', margin: '0 0 6px 0', textAlign: 'center' }}>
+                  Letras e Números
+                </h3>
+                <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>
+                  Alfabetização e numerais assistivos
+                </p>
+              </div>
+
+              <div
+                onClick={() => {
+                  setHubJogosAberto(false);
+                  setJogoSelecionado('cognitive');
+                }}
+                style={{
+                  background: '#0f172a',
+                  border: '2px solid #ec4899',
+                  borderRadius: '20px',
+                  padding: '20px',
+                  width: '100%',
+                  maxWidth: '240px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  cursor: 'pointer',
+                  boxShadow: '0 6px 16px rgba(0, 0, 0, 0.4)'
+                }}
+              >
+                <span style={{ fontSize: '2.8rem', marginBottom: '8px' }}>🧠</span>
+                <h3 style={{ color: '#f472b6', fontSize: '1.15rem', margin: '0 0 6px 0', textAlign: 'center' }}>
+                  Engine Cognitiva
+                </h3>
+                <p style={{ color: '#94a3b8', fontSize: '0.82rem', textAlign: 'center', margin: 0 }}>
+                  Validação lógica e estruturação de pensamento
+                </p>
+              </div>
             </div>
           </div>
         </div>
