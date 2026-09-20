@@ -61,7 +61,7 @@ html, body, #root {
 /* 1. Barra Superior Integrada */
 .sentence-bar {
   flex-shrink: 0;
-  height: 88px;
+  height: 84px;
   background-color: #0f172a;
   display: flex;
   align-items: center;
@@ -230,44 +230,25 @@ html, body, #root {
   color: #0f172a;
 }
 
-/* 3. Grade Principal */
+/* 3. Grade Principal (Responsiva Universal para Celular, Chromebook e Desktop) */
 .board-container {
   flex: 1;
-  padding: 10px 16px 16px 16px;
-  display: flex;
-  overflow-y: auto;
+  width: 100%;
+  padding: 12px 16px 20px 16px;
+  display: block;
+  overflow-y: auto !important; /* Libera rolagem em qualquer resolução */
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
 }
 
 .board-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); /* Organiza colunas sem empavitar */
+  grid-auto-rows: minmax(135px, max-content);                   /* Cada linha tem seu tamanho próprio */
   gap: 12px;
   width: 100%;
   align-content: start;
-}
-
-@media (min-width: 600px) {
-  .board-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-  }
-}
-
-/* Desktop e Telas Grandes */
-@media (min-width: 900px) {
-  .board-container {
-    overflow: hidden;
-  }
-
-  .board-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 14px;
-    height: 100%;
-    align-content: stretch;
-  }
 }
 
 /* ========== CARDS BEM ENQUADRADOS ========== */
@@ -277,13 +258,15 @@ html, body, #root {
   align-items: center;
   justify-content: space-between;
   padding: 10px 8px 8px 8px;
-  min-height: 140px;
+  min-height: 135px;
+  width: 100%;
   border-radius: 18px;
   border: 3px solid transparent;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   transition: transform 0.08s ease;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .board-card:active {
@@ -291,61 +274,74 @@ html, body, #root {
 }
 
 .card-visual-box {
-  flex: 1;
   width: 100%;
+  height: 85px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  min-height: 90px;
 }
 
 .card-visual-box svg {
-  width: 65px;
-  height: 65px;
+  width: 60px;
+  height: 60px;
 }
 
 .card-custom-img {
   width: auto;
   height: auto;
-  max-width: 78%;
-  max-height: 85px;
+  max-width: 82%;
+  max-height: 82px;
   object-fit: contain;
   filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.18));
 }
 
-@media (min-width: 900px) {
-  .board-card {
-    min-height: auto;
-    height: 100%;
-    padding: 12px 8px 10px 8px;
-  }
-
-  .card-visual-box {
-    min-height: 110px;
-  }
-
-  .card-custom-img {
-    max-height: 130px;
-    max-width: 80%;
-  }
-
-  .card-visual-box svg {
-    width: 72px;
-    height: 72px;
-  }
-}
-
 .card-title {
-  font-size: 1.12rem;
+  font-size: 1.05rem;
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.02em;
-  margin-top: 6px;
+  margin-top: 4px;
   flex-shrink: 0;
   line-height: 1.15;
   text-align: center;
   padding: 0 2px;
+}
+
+/* Ajustes Específicos para Chromebooks e Notebooks de Tela Baixa (ex: 1366x768) */
+@media (min-width: 900px) and (max-height: 750px) {
+  .sentence-bar {
+    height: 70px;
+    padding: 6px 12px;
+  }
+
+  .profile-img, .profile-avatar-fallback {
+    width: 38px;
+    height: 38px;
+  }
+
+  .board-grid {
+    grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
+    grid-auto-rows: minmax(125px, max-content);
+    gap: 10px;
+  }
+
+  .board-card {
+    min-height: 125px;
+    padding: 6px;
+  }
+
+  .card-visual-box {
+    height: 75px;
+  }
+
+  .card-custom-img {
+    max-height: 72px;
+  }
+
+  .card-title {
+    font-size: 0.95rem;
+  }
 }
 
 /* Cores Fitzgerald */
@@ -617,21 +613,21 @@ html, body, #root {
   }
 
   .board-card {
-    min-height: 155px;
+    min-height: 145px;
     padding: 8px 6px 6px 6px;
   }
 
   .card-visual-box {
-    min-height: 85px;
+    height: 75px;
   }
 
   .card-custom-img {
-    max-height: 78px;
+    max-height: 72px;
     max-width: 80%;
   }
 
   .card-title {
-    font-size: 0.98rem;
+    font-size: 0.95rem;
     margin-top: 4px;
   }
 
