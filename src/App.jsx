@@ -32,189 +32,189 @@ const MAPA_IMAGENS = {
 const VARIACOES_DISPONIVEIS = {
   "Eu": [
     { label: "Menino Claro", img: "eu.png" },
-    { label: "Menino Pardo", img: "eu_dark.png" },
+    { label: "Menino Negro", img: "eu_dark.png" },
     { label: "Menina Clara", img: "eu-menina.png" },
-    { label: "Menina Parda", img: "eu-menina-dark.png" }
+    { label: "Menina Negra", img: "eu-menina-dark.png" }
   ],
   "Escovar os Dentes": [
     { label: "Menino Claro", img: "escovar-dentes.png" },
-    { label: "Menino Pardo", img: "escovar-dentes-dark.png" },
+    { label: "Menino Negro", img: "escovar-dentes-dark.png" },
     { label: "Menina Clara", img: "escovar-dentes-menina.png" },
-    { label: "Menina Parda", img: "escovar-dentes-menina-dark.png" }
+    { label: "Menina Negra", img: "escovar-dentes-menina-dark.png" }
   ],
   "Tomar Banho": [
     { label: "Menino Claro", img: "tomar-banho.png" },
-    { label: "Menino Pardo", img: "tomar-banho-dark.png" },
+    { label: "Menino Negro", img: "tomar-banho-dark.png" },
     { label: "Menina Clara", img: "tomar-banho-menina.png" },
-    { label: "Menina Parda", img: "tomar-banho-menina-dark.png" }
+    { label: "Menina Negra", img: "tomar-banho-menina-dark.png" }
   ],
   "Lavar as Mãos": [
     { label: "Menino Claro", img: "lavar-maos.png" },
-    { label: "Menino Pardo", img: "lavar-maos-dark.png" },
+    { label: "Menino Negro", img: "lavar-maos-dark.png" },
     { label: "Menina Clara", img: "lavar-maos-menina.png" },
-    { label: "Menina Parda", img: "lavar-maos-menina-dark.png" }
+    { label: "Menina Negra", img: "lavar-maos-menina-dark.png" }
   ],
   "Ajuda": [
     { label: "Menino Claro", img: "ajuda.png" },
-    { label: "Menino Pardo", img: "ajuda-dark.png" },
+    { label: "Menino Negro", img: "ajuda-dark.png" },
     { label: "Menina Clara", img: "ajuda-menina.png" },
-    { label: "Menina Parda", img: "ajuda-menina-dark.png" }
+    { label: "Menina Negra", img: "ajuda-menina-dark.png" }
   ],
   "Dor de Cabeça": [
     { label: "Menino Claro", img: "dor-cabeca.png" },
-    { label: "Menino Pardo", img: "dor-cabeca-dark.png" },
+    { label: "Menino Negro", img: "dor-cabeca-dark.png" },
     { label: "Menina Clara", img: "dor-cabeca-menina.png" },
-    { label: "Menina Parda", img: "dor-cabeca-menina-dark.png" }
+    { label: "Menina Negra", img: "dor-cabeca-menina-dark.png" }
   ],
   "Dor de Barriga": [
     { label: "Menino Claro", img: "dor-barriga.png" },
-    { label: "Menino Pardo", img: "dor-barriga-dark.png" },
+    { label: "Menino Negro", img: "dor-barriga-dark.png" },
     { label: "Menina Clara", img: "dor-barriga-menina.png" },
-    { label: "Menina Parda", img: "dor-barriga-menina-dark.png" }
+    { label: "Menina Negra", img: "dor-barriga-menina-dark.png" }
   ],
   "Barulho": [
     { label: "Menino Claro", img: "barulho.png" },
-    { label: "Menino Pardo", img: "barulho-dark.png" },
+    { label: "Menino Negro", img: "barulho-dark.png" },
     { label: "Menina Clara", img: "barulho-menina.png" },
-    { label: "Menina Parda", img: "barulho-menina-dark.png" }
+    { label: "Menina Negra", img: "barulho-menina-dark.png" }
   ],
   "Dor de Garganta": [
     { label: "Menino Claro", img: "dor-garganta.png" },
-    { label: "Menino Pardo", img: "dor-garganta-dark.png" },
+    { label: "Menino Negro", img: "dor-garganta-dark.png" },
     { label: "Menina Clara", img: "dor-garganta-menina.png" },
-    { label: "Menina Parda", img: "dor-garganta-menina-dark.png" }
+    { label: "Menina Negra", img: "dor-garganta-menina-dark.png" }
   ],
   "Gostei Muito": [
     { label: "Menino Claro", img: "gostei-muito.png" },
-    { label: "Menino Pardo", img: "gostei-muito-dark.png" },
+    { label: "Menino Negro", img: "gostei-muito-dark.png" },
     { label: "Menina Clara", img: "gostei-muito-menina.png" },
-    { label: "Menina Parda", img: "gostei-muito-menina-dark.png" }
+    { label: "Menina Negra", img: "gostei-muito-menina-dark.png" }
   ],
   "Frio": [
     { label: "Menino Claro", img: "frio.png" },
-    { label: "Menino Pardo", img: "frio-dark.png" },
+    { label: "Menino Negro", img: "frio-dark.png" },
     { label: "Menina Clara", img: "frio-menina.png" },
-    { label: "Menina Parda", img: "frio-menina-dark.png" }
+    { label: "Menina Negra", img: "frio-menina-dark.png" }
   ],
   "Calor": [
     { label: "Menino Claro", img: "calor.png" },
-    { label: "Menino Pardo", img: "calor-dark.png" },
+    { label: "Menino Negro", img: "calor-dark.png" },
     { label: "Menina Clara", img: "calor-menina.png" },
-    { label: "Menina Parda", img: "calor-menina-dark.png" }
+    { label: "Menina Negra", img: "calor-menina-dark.png" }
   ],
   "Cansado": [
     { label: "Menino Claro", img: "cansado.png" },
-    { label: "Menino Pardo", img: "cansado-dark.png" },
+    { label: "Menino Negro", img: "cansado-dark.png" },
     { label: "Menina Clara", img: "cansado-menina.png" },
-    { label: "Menina Parda", img: "cansado-menina-dark.png" }
+    { label: "Menina Negra", img: "cansado-menina-dark.png" }
   ],
   "Medo": [
     { label: "Menino Claro", img: "medo.png" },
-    { label: "Menino Pardo", img: "medo-dark.png" },
+    { label: "Menino Negro", img: "medo-dark.png" },
     { label: "Menina Clara", img: "medo-menina.png" },
-    { label: "Menina Parda", img: "medo-menina-dark.png" }
+    { label: "Menina Negra", img: "medo-menina-dark.png" }
   ],
   "Feliz": [
     { label: "Menino Claro", img: "feliz.png" },
-    { label: "Menino Pardo", img: "feliz-dark.png" },
+    { label: "Menino Negro", img: "feliz-dark.png" },
     { label: "Menina Clara", img: "feliz-menina.png" },
-    { label: "Menina Parda", img: "feliz-menina-dark.png" }
+    { label: "Menina Negra", img: "feliz-menina-dark.png" }
   ],
   "Triste": [
     { label: "Menino Claro", img: "triste.png" },
-    { label: "Menino Pardo", img: "triste-dark.png" },
+    { label: "Menino Negro", img: "triste-dark.png" },
     { label: "Menina Clara", img: "triste-menina.png" },
-    { label: "Menina Parda", img: "triste-menina-dark.png" }
+    { label: "Menina Negra", img: "triste-menina-dark.png" }
   ],
   "Bravo": [
     { label: "Menino Claro", img: "bravo.png" },
-    { label: "Menino Pardo", img: "bravo-dark.png" },
+    { label: "Menino Negro", img: "bravo-dark.png" },
     { label: "Menina Clara", img: "bravo-menina.png" },
-    { label: "Menina Parda", img: "bravo-menina-dark.png" }
+    { label: "Menina Negra", img: "bravo-menina-dark.png" }
   ],
   "Comer": [
     { label: "Menino Claro", img: "comer.png" },
-    { label: "Menino Pardo", img: "comer-dark.png" },
+    { label: "Menino Negro", img: "comer-dark.png" },
     { label: "Menina Clara", img: "comer-f.png" },
-    { label: "Menina Parda", img: "comer-f-dark.png" }
+    { label: "Menina Negra", img: "comer-f-dark.png" }
   ],
   "Esperar": [
     { label: "Menino Claro", img: "esperar.png" },
-    { label: "Menino Pardo", img: "esperar-dark.png" },
+    { label: "Menino Negro", img: "esperar-dark.png" },
     { label: "Menina Clara", img: "esperar-menina.png" },
-    { label: "Menina Parda", img: "esperar-menina-dark.png" }
+    { label: "Menina Negra", img: "esperar-menina-dark.png" }
   ],
   "Passear": [
     { label: "Menino Claro", img: "passear.png" },
-    { label: "Menino Pardo", img: "passear-dark.png" },
+    { label: "Menino Negro", img: "passear-dark.png" },
     { label: "Meninas Claras", img: "passear-menina.png" },
-    { label: "Meninas Pardas", img: "passear-menina-dark.png" }
+    { label: "Meninas Negras", img: "passear-menina-dark.png" }
   ],
   "Calma": [
     { label: "Menino Claro", img: "calma.png" },
-    { label: "Menino Pardo", img: "calma-dark.png" },
+    { label: "Menino Negro", img: "calma-dark.png" },
     { label: "Menina Clara", img: "calma-menina.png" },
-    { label: "Menina Parda", img: "calma-menina-dark.png" }
+    { label: "Menina Negra", img: "calma-menina-dark.png" }
   ],
   "Colega": [
     { label: "Amigo Claro", img: "colega.png" },
-    { label: "Amigo Pardo", img: "colega-dark.png" },
+    { label: "Amigo Negro", img: "colega-dark.png" },
     { label: "Amigas Claras", img: "colega-menina.png" },
-    { label: "Amigas Pardas", img: "colega-menina-dark.png" }
+    { label: "Amigas Negras", img: "colega-menina-dark.png" }
   ],
   "Mamãe": [
     { label: "Padrão", img: "mamae.png" },
-    { label: "Parda", img: "mamae-dark.png" }
+    { label: "Negra", img: "mamae-dark.png" }
   ],
   "Papai": [
     { label: "Padrão", img: "papai.png" },
-    { label: "Pardo", img: "papai-dark.png" }
+    { label: "Negro", img: "papai-dark.png" }
   ],
   "Irmão": [
     { label: "Padrão", img: "irmao.png" },
-    { label: "Pardo", img: "irmao-dark.png" }
+    { label: "Negro", img: "irmao-dark.png" }
   ],
   "Irmã": [
     { label: "Padrão", img: "irma.png" },
-    { label: "Parda", img: "irma-dark.png" }
+    { label: "Negra", img: "irma-dark.png" }
   ],
   "Vovô": [
     { label: "Padrão", img: "vovo-m.png" },
-    { label: "Pardo", img: "vovo-m-dark.png" }
+    { label: "Negro", img: "vovo-m-dark.png" }
   ],
   "Vovó": [
     { label: "Padrão", img: "vovo-f.png" },
-    { label: "Parda", img: "vovo-f-dark.png" }
+    { label: "Negra", img: "vovo-f-dark.png" }
   ],
   "Professora": [
     { label: "Padrão", img: "professora.png" },
-    { label: "Parda", img: "professora-dark.png" }
+    { label: "Negra", img: "professora-dark.png" }
   ],
   "Terapeuta": [
     { label: "Padrão", img: "terapeuta.png" },
-    { label: "Terapeuta Parda", img: "terapeuta-dark.png" },
+    { label: "Terapeuta Negra", img: "terapeuta-dark.png" },
     { label: "Terapeuta Homem", img: "terapeuta-homem.png" },
-    { label: "Terapeuta H. Pardo", img: "terapeuta-homem-dark.png" }
+    { label: "Terapeuta H. Negro", img: "terapeuta-homem-dark.png" }
   ],
   "Médico": [
     { label: "Padrão", img: "medico.png" },
-    { label: "Médico Pardo", img: "medico-dark.png" },
+    { label: "Médico Negro", img: "medico-dark.png" },
     { label: "Médica", img: "medica.png" },
-    { label: "Médica Parda", img: "medica-dark.png" }
+    { label: "Médica Negra", img: "medica-dark.png" }
   ],
   "Cuidador": [
     { label: "Padrão", img: "cuidador.png" },
-    { label: "Pardo", img: "cuidador-dark.png" }
+    { label: "Negro", img: "cuidador-dark.png" }
   ],
   "Cuidadora": [
     { label: "Padrão", img: "cuidadora.png" },
-    { label: "Parda", img: "cuidadora-dark.png" }
+    { label: "Negra", img: "cuidadora-dark.png" }
   ]
 };
 
 localforage.config({
   name: 'VozAtivaPro',
-  storeName: 'aac_dados_v21'
+  storeName: 'aac_dados_v22'
 });
 
 const ICONES_BASE = {
@@ -475,12 +475,12 @@ export default function App() {
         const prefsSalvas = await localforage.getItem('custom_visual_skins');
         if (prefsSalvas) setPreferenciasVisuais(prefsSalvas);
 
-        const cardsSalvos = await localforage.getItem('custom_cards_v21');
+        const cardsSalvos = await localforage.getItem('custom_cards_v22');
         if (cardsSalvos && cardsSalvos.length > 0) {
           setCards(cardsSalvos);
         } else {
           setCards(DADOS_COMPLETOS);
-          await localforage.setItem('custom_cards_v21', DADOS_COMPLETOS);
+          await localforage.setItem('custom_cards_v22', DADOS_COMPLETOS);
         }
 
         const fotoSalva = await localforage.getItem('child_photo');
@@ -712,7 +712,7 @@ export default function App() {
 
     const listaAtualizada = [...cards, novoCard];
     setCards(listaAtualizada);
-    await localforage.setItem('custom_cards_v21', listaAtualizada);
+    await localforage.setItem('custom_cards_v22', listaAtualizada);
 
     setNovoTexto('');
     setFotoCartaoCustom(null);
