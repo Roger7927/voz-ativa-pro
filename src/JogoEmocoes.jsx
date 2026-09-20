@@ -161,7 +161,7 @@ const BANCO_COMPLETO_EMOCOES = [
   }
 ];
 
-export default function JogoEmocoes({ preferenciasVisuais = {}, onClose }) {
+export default function JogoEmocoes({ preferenciasVisuais = {}, onClose, generoUsuario = 'ele' }) {
   const [etapaMenu, setEtapaMenu] = useState(true);
   const [dificuldade, setDificuldade] = useState('medio');
   const [fasesPartida, setFasesPartida] = useState([]);
@@ -181,7 +181,7 @@ export default function JogoEmocoes({ preferenciasVisuais = {}, onClose }) {
       window.speechSynthesis.cancel();
       const fala = new SpeechSynthesisUtterance(texto);
       fala.lang = 'pt-BR';
-      fala.rate = 0.95;
+      fala.rate = 0.92;
       fala.onend = () => { if (aoTerminar) aoTerminar(); };
       fala.onerror = () => { if (aoTerminar) aoTerminar(); };
       window.speechSynthesis.speak(fala);
@@ -239,9 +239,21 @@ export default function JogoEmocoes({ preferenciasVisuais = {}, onClose }) {
 
   const faseAtual = fasesPartida[indiceFase];
 
+  // Encadeamento perfeito: História gravada -> Pergunta humana gravada (sem robô)
   const tocarPergunta = () => {
     if (!faseAtual) return;
-    tocarAudio(faseAtual.audioEnunciado, faseAtual.enunciado);
+
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+
+    const arquivoPergunta = generoUsuario === 'ela' ? 'pergunta_ela.m4a' : 'pergunta_ele.m4a';
+
+    tocarAudio(faseAtual.audioEnunciado, '', () => {
+      setTimeout(() => {
+        tocarAudio(arquivoPergunta, '');
+      }, 250);
+    });
   };
 
   useEffect(() => {
@@ -587,9 +599,19 @@ export default function JogoEmocoes({ preferenciasVisuais = {}, onClose }) {
                   🔊 Ouvir
                 </button>
 
+                <div style={{
+                  color: '#38bdf8',
+                  fontSize: '1.25rem',
+                  fontWeight: 900,
+                  marginBottom: 8,
+                  textAlign: 'left'
+                }}>
+                  🤔 {generoUsuario === 'ela' ? 'O que ela está sentindo?' : 'O que ele está sentindo?'}
+                </div>
+
                 <p style={{
                   color: '#f8fafc',
-                  fontSize: '1.12rem',
+                  fontSize: '1.1rem',
                   fontWeight: 700,
                   lineHeight: 1.45,
                   margin: '0 0 12px 0',
