@@ -8,6 +8,7 @@ import JogoFrases from './JogoFrases';
 import JogoFuncional from './JogoFuncional';
 import JogoAlfabetizacao from './JogoAlfabetizacao';
 import CognitiveChallenge from './CognitiveChallenge';
+import { FeedbackModal } from './FeedbackModal';
 import './index.css';
 
 const MAPA_IMAGENS = {
@@ -450,6 +451,7 @@ export default function App() {
   const [modalAberto, setModalAberto] = useState(false);
   const [hubJogosAberto, setHubJogosAberto] = useState(false);
   const [jogoSelecionado, setJogoSelecionado] = useState(null);
+  const [feedbackAberto, setFeedbackAberto] = useState(false);
 
   const [modoCalmo, setModoCalmo] = useState(false);
   const [menuEmergenciaAberto, setMenuEmergenciaAberto] = useState(false);
@@ -865,6 +867,24 @@ export default function App() {
           title="Ajuda Rápida e Emergência Imediata"
         >
           🆘 AJUDA RÁPIDA
+        </button>
+        <button
+          type="button"
+          onClick={() => setFeedbackAberto(true)}
+          style={{
+            background: 'linear-gradient(135deg, #0284c7, #0369a1)',
+            color: '#ffffff',
+            fontWeight: 'bold',
+            border: '2px solid #38bdf8',
+            borderRadius: '14px',
+            padding: '8px 16px',
+            cursor: 'pointer',
+            flexShrink: 0,
+            boxShadow: '0 2px 8px rgba(2, 132, 199, 0.4)'
+          }}
+          title="Avaliação da Ferramenta"
+        >
+          💬 AVALIAR APP
         </button>
       </nav>
 
@@ -1467,7 +1487,14 @@ export default function App() {
       {jogoSelecionado === 'alfabetizacao' && <JogoAlfabetizacao preferenciasVisuais={preferenciasVisuais} onClose={() => setJogoSelecionado(null)} />}
       {jogoSelecionado === 'cognitive' && <CognitiveChallenge onClose={() => setJogoSelecionado(null)} onComplete={() => setJogoSelecionado(null)} />}
 
-      {/* 8. Botão Flutuante (FAB) */}
+      {/* 8. Modal de Feedback (Opção III) */}
+      <FeedbackModal
+        isOpen={feedbackAberto}
+        onClose={() => setFeedbackAberto(false)}
+        formUrl="https://docs.google.com/forms/d/e/1FAIpQLSf79iOriksPbv3pJ82wcOGZFNXCadIRFYObuqI1NVxEzJhXdQ/viewform?embedded=true"
+      />
+
+      {/* 9. Botão Flutuante (FAB) */}
       <div className="fab-lock-container">
         {segurandoFab && <div className="fab-tooltip">Segure para abrir...</div>}
         <button
