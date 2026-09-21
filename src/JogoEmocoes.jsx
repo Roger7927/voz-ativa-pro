@@ -239,7 +239,7 @@ export default function JogoEmocoes({ preferenciasVisuais = {}, onClose, generoU
 
   const faseAtual = fasesPartida[indiceFase];
 
-  // Encadeamento perfeito: História gravada -> Pergunta humana gravada (sem robô)
+  // Solução Definitiva: validação por lista explícita dos 4 ficheiros completos
   const tocarPergunta = () => {
     if (!faseAtual) return;
 
@@ -247,13 +247,24 @@ export default function JogoEmocoes({ preferenciasVisuais = {}, onClose, generoU
       window.speechSynthesis.cancel();
     }
 
-    const arquivoPergunta = generoUsuario === 'ela' ? 'pergunta_ela.m4a' : 'pergunta_ele.m4a';
+    // Apenas estes 4 ficheiros possuem a pergunta internamente na gravação
+    const audiosCompletos = [
+      'pergunta_triste.m4a',
+      'pergunta_barulho.m4a',
+      'pergunta_cansado.m4a',
+      'pergunta_dor.m4a'
+    ];
 
-    tocarAudio(faseAtual.audioEnunciado, '', () => {
-      setTimeout(() => {
-        tocarAudio(arquivoPergunta, '');
-      }, 250);
-    });
+    if (audiosCompletos.includes(faseAtual.audioEnunciado)) {
+      tocarAudio(faseAtual.audioEnunciado, '');
+    } else {
+      const arquivoPergunta = generoUsuario === 'ela' ? 'pergunta_ela.m4a' : 'pergunta_ele.m4a';
+      tocarAudio(faseAtual.audioEnunciado, '', () => {
+        setTimeout(() => {
+          tocarAudio(arquivoPergunta, '');
+        }, 180);
+      });
+    }
   };
 
   useEffect(() => {
